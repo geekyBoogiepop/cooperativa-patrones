@@ -20,27 +20,29 @@ import javax.swing.JFrame;
  * @author Latitude
  */
 public class ModalUsuario extends javax.swing.JDialog {
- Timer timer = null;
+
+    Timer timer = null;
     TimerTask task;
     int i = 32;
+
     /**
      * Creates new form ModalUsuario
      */
     public ModalUsuario(java.awt.Frame parent, boolean modal) {
-         super(parent, modal);
+        super(parent, modal);
         initComponents();
-        
+
         AWTUtilities.setOpaque(this, false);
         this.CBNacionalidad.setCursor(new Cursor(12));
         CBNacionalidad.setModel(new javax.swing.DefaultComboBoxModel(Nacionalidad.paises));
         this.id.setVisible(false);
         this.nombreEmp.setVisible(false);
-        Ubicar(0);
         this.txtNombre.requestFocus();
-        
+        this.setLocationRelativeTo(null);
+
     }
 
-     private void limpiarCampos() {
+    private void limpiarCampos() {
 
         this.txtNombre.requestFocus();
         this.txtNombre.setText(null);
@@ -52,8 +54,6 @@ public class ModalUsuario extends javax.swing.JDialog {
         this.txtMailPersonal.setText("");
         this.txtMailInterno.setText("");
         this.txtProfesion.setText("");
-       
-        
 
     }
 
@@ -67,9 +67,6 @@ public class ModalUsuario extends javax.swing.JDialog {
         AWTUtilities.setOpacity(this, trasp);
     }
 
-    private void Ubicar(int y) {
-        this.setLocation(603, y - 300);
-    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -446,7 +443,6 @@ public class ModalUsuario extends javax.swing.JDialog {
                 if (i == 0) {
                     Cerrar();
                 } else {
-                    Ubicar(i);
                     i -= 32;
                     Trasparencia((float) i / 352);
                 }
@@ -456,143 +452,134 @@ public class ModalUsuario extends javax.swing.JDialog {
         timer.schedule(task, 0, 2);
     }//GEN-LAST:event_cerrarActionPerformed
 
-  
+
     private void MBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MBLimpiarActionPerformed
         limpiarCampos();
         // TODO add your handling code here:
     }//GEN-LAST:event_MBLimpiarActionPerformed
 
     private void MBRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MBRegistrarActionPerformed
-            
-       if(this.txtNombre.equals("") || this.txtIdentificacion.equals("") ||
-                this.txtProfesion.equals("")||this.txtMailInterno.equals("") || this.txtMailPersonal.equals("") 
-                || this.CBNacionalidad.getSelectedIndex()==0 || this.DCFechaNac.getDatoFecha() == null || this.DCFechaIngreso.getDatoFecha().equals(null) || this.DCFechaSalida.equals(null)){
-            
+        if (this.txtNombre.getText().isEmpty() || this.txtIdentificacion.getText().isEmpty()
+                || this.txtProfesion.getText().isEmpty() || this.txtMailInterno.getText().isEmpty()
+                || this.txtMailPersonal.getText().isEmpty() || this.CBNacionalidad.getSelectedIndex() == 0
+                || this.DCFechaNac.getDatoFecha() == null || this.DCFechaIngreso.getDatoFecha() == null
+                || this.DCFechaSalida.getDatoFecha() == null) {
+
             ErrorAlert er = new ErrorAlert(new JFrame(), true);
             er.titulo.setText("OOPS...");
             er.msj.setText("FALTAN CAMPOS DE LLENAR");
             er.msj1.setText("");
             er.setVisible(true);
-            
-        }
-        else{
-            if(this.MBRegistrar.getText().equals("GUARDAR")){
-                 if (Opciones.verificaEmpleado(this.txtNombre.getText())
-                            && !this.txtNombre.getText().equals(this.nombreEmp.getText())) {
-                        ErrorAlert er = new ErrorAlert(new JFrame(), true);
-                        er.titulo.setText("OOPS...");
-                        er.msj.setText("EL NOMBRE DEL EMPLEADO");
-                        er.msj1.setText("YA ÉXISTE");
-                        er.setVisible(true);
-                  } 
-                 else 
-                 {
-                        Sentencias s = new Sentencias();
-                        s.setCodigoE(Integer.parseInt(this.id.getText()));
-                        s.setNombre(this.txtNombre.getText());
-                        s.setProfesion(this.txtProfesion.getText());
-                        s.setMailInterno(this.txtMailInterno.getText());
-                        s.setIdentificacion(this.txtIdentificacion.getText());
-                        s.setMailPersonal(this.txtMailPersonal.getText());
-                        if(this.JRBFemenino.isSelected()){
-                            s.setSexo(this.JRBFemenino.getText());
-                        }else{
-                            if(this.JRBMasculino.isSelected()){
-                                s.setSexo(this.JRBMasculino.getText());
-                            }
-                        }
-                        
-                        if(this.JRBSoltero.isSelected()){
-                            s.setEstadoCivil(this.JRBSoltero.getText());
-                        }else{
-                            if(this.JRBCasado.isSelected()){
-                                s.setEstadoCivil(this.JRBCasado.getText());
-                            }else{
-                                if(this.JRBAcompañado.isSelected()){
-                                    s.setEstadoCivil(this.JRBAcompañado.getText());
-                                }
-                            }
-                        }
-                        s.setNacionalidad(this.CBNacionalidad.getSelectedItem().toString());
-                        s.setFechaNacimiento(this.DCFechaNac.getDatoFecha());
-                        s.setFechaIngreso(this.DCFechaIngreso.getDatoFecha());
-                        s.setFechaSalida(this.DCFechaSalida.getDatoFecha());
 
-                        int opcion = Opciones.actualizar(s);
-                        if (opcion != 0) {
-                            SuccessAlert sa = new SuccessAlert(new JFrame(), true);
-                            sa.titulo.setText("¡HECHO!");
-                            sa.msj.setText("SE HAN GUARDADO LOS CAMBIOS");
-                            sa.msj1.setText("");
-                            sa.setVisible(true);
-                        }
-                        else
-                        {
-                              if (Opciones.verificaEmpleado(this.txtNombre.getText())) {
+        } else {
+            if (this.MBRegistrar.getText().equals("GUARDAR")) {
+                if (Opciones.verificaEmpleado(this.txtNombre.getText())
+                        && !this.txtNombre.getText().equals(this.nombreEmp.getText())) {
+                    ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                    er.titulo.setText("OOPS...");
+                    er.msj.setText("EL NOMBRE DEL EMPLEADO YA EXISTE");
+                    er.msj1.setText("");
+                    er.setVisible(true);
+                } else {
+                    Sentencias s = new Sentencias();
+                    s.setCodigoE(Integer.parseInt(this.id.getText()));
+                    s.setNombre(this.txtNombre.getText());
+                    s.setProfesion(this.txtProfesion.getText());
+                    s.setMailInterno(this.txtMailInterno.getText());
+                    s.setIdentificacion(this.txtIdentificacion.getText());
+                    s.setMailPersonal(this.txtMailPersonal.getText());
+
+                    if (this.JRBFemenino.isSelected()) {
+                        s.setSexo(this.JRBFemenino.getText());
+                    } else if (this.JRBMasculino.isSelected()) {
+                        s.setSexo(this.JRBMasculino.getText());
+                    }
+
+                    if (this.JRBSoltero.isSelected()) {
+                        s.setEstadoCivil(this.JRBSoltero.getText());
+                    } else if (this.JRBCasado.isSelected()) {
+                        s.setEstadoCivil(this.JRBCasado.getText());
+                    } else if (this.JRBAcompañado.isSelected()) {
+                        s.setEstadoCivil(this.JRBAcompañado.getText());
+                    }
+
+                    s.setNacionalidad(this.CBNacionalidad.getSelectedItem().toString());
+                    s.setFechaNacimiento(this.DCFechaNac.getDatoFecha());
+                    s.setFechaIngreso(this.DCFechaIngreso.getDatoFecha());
+                    s.setFechaSalida(this.DCFechaSalida.getDatoFecha());
+
+                    int opcion = Opciones.actualizar(s);
+
+                    if (opcion != 0) {
+                        SuccessAlert sa = new SuccessAlert(new JFrame(), true);
+                        sa.titulo.setText("¡HECHO!");
+                        sa.msj.setText("SE HAN GUARDADO LOS CAMBIOS");
+                        sa.msj1.setText("");
+                        sa.setVisible(true);
+                    } else {
                         ErrorAlert er = new ErrorAlert(new JFrame(), true);
                         er.titulo.setText("OOPS...");
-                        er.msj.setText("EL NOMBRE DE USUARIO");
-                        er.msj1.setText("YA ÉXISTE");
+                        er.msj.setText("OCURRIÓ UN ERROR AL ACTUALIZAR");
+                        er.msj1.setText("");
                         er.setVisible(true);
-                    } else {
-                        Sentencias v = new Sentencias();
-                        
-                        v.setNombre(this.txtNombre.getText());
-                        v.setProfesion(this.txtProfesion.getText());
-                        v.setMailInterno(this.txtMailInterno.getText());
-                        v.setIdentificacion(this.txtIdentificacion.getText());
-                        v.setMailPersonal(this.txtMailPersonal.getText());
-                        if(this.JRBFemenino.isSelected()){
-                            v.setSexo(this.JRBFemenino.getText());
-                        }else{
-                            if(this.JRBMasculino.isSelected()){
-                                v.setSexo(this.JRBMasculino.getText());
-                            }
-                        }
-                        
-                        if(this.JRBSoltero.isSelected()){
-                            v.setEstadoCivil(this.JRBSoltero.getText());
-                        }else{
-                            if(this.JRBCasado.isSelected()){
-                                v.setEstadoCivil(this.JRBCasado.getText());
-                            }else{
-                                if(this.JRBAcompañado.isSelected()){
-                                    v.setEstadoCivil(this.JRBAcompañado.getText());
-                                }
-                            }
-                        }
-                        v.setNacionalidad(this.CBNacionalidad.getSelectedItem().toString());
-                        v.setFechaNacimiento(this.DCFechaNac.getDatoFecha());
-                        v.setFechaIngreso(this.DCFechaIngreso.getDatoFecha());
-                        v.setFechaSalida(this.DCFechaSalida.getDatoFecha());
-                        int op = Opciones.registrar(v);
-                        if (op != 0) {
-                            limpiarCampos();
-                            SuccessAlert sa = new SuccessAlert(new JFrame(), true);
-                            sa.titulo.setText("¡HECHO!");
-                            sa.msj.setText("SE HA REGISTRADO UN");
-                            sa.msj1.setText("NUEVO USUARIO");
-                            sa.setVisible(true);
-                        }
                     }
-                        }
-                    }
-                 
+                }
+            } else {
+                Sentencias v = new Sentencias();
+                v.setNombre(this.txtNombre.getText());
+                v.setProfesion(this.txtProfesion.getText());
+                v.setMailInterno(this.txtMailInterno.getText());
+                v.setIdentificacion(this.txtIdentificacion.getText());
+                v.setMailPersonal(this.txtMailPersonal.getText());
+
+                if (this.JRBFemenino.isSelected()) {
+                    v.setSexo(this.JRBFemenino.getText());
+                } else if (this.JRBMasculino.isSelected()) {
+                    v.setSexo(this.JRBMasculino.getText());
+                }
+
+                if (this.JRBSoltero.isSelected()) {
+                    v.setEstadoCivil(this.JRBSoltero.getText());
+                } else if (this.JRBCasado.isSelected()) {
+                    v.setEstadoCivil(this.JRBCasado.getText());
+                } else if (this.JRBAcompañado.isSelected()) {
+                    v.setEstadoCivil(this.JRBAcompañado.getText());
+                }
+
+                v.setNacionalidad(this.CBNacionalidad.getSelectedItem().toString());
+                v.setFechaNacimiento(this.DCFechaNac.getDatoFecha());
+                v.setFechaIngreso(this.DCFechaIngreso.getDatoFecha());
+                v.setFechaSalida(this.DCFechaSalida.getDatoFecha());
+
+                int op = Opciones.registrar(v);
+
+                if (op != 0) {
+                    limpiarCampos();
+                    SuccessAlert sa = new SuccessAlert(new JFrame(), true);
+                    sa.titulo.setText("¡HECHO!");
+                    sa.msj.setText("SE HA REGISTRADO UN NUEVO USUARIO");
+                    sa.msj1.setText("");
+                    sa.setVisible(true);
+                } else {
+                    ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                    er.titulo.setText("OOPS...");
+                    er.msj.setText("OCURRIÓ UN ERROR AL REGISTRAR");
+                    er.msj1.setText("");
+                    er.setVisible(true);
+                }
             }
         }
-
     }//GEN-LAST:event_MBRegistrarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        
-         task = new TimerTask() {
+
+        task = new TimerTask() {
             @Override
             public void run() {
                 if (i == 352) {
                     timer.cancel();
                 } else {
-                    Ubicar(i);
                     i += 32;
                     Trasparencia((float) i / 352);
                 }
@@ -603,31 +590,28 @@ public class ModalUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowOpened
 
     private void MBRegistrarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MBRegistrarKeyTyped
-           
+
         if ((evt.getKeyChar() == KeyEvent.VK_ENTER)) {
-             if(this.txtNombre.equals("") ||this.txtIdentificacion.equals("") ||
-                this.txtProfesion.equals("")||this.txtMailInterno.equals("") || this.txtMailPersonal.equals("") 
-                || this.CBNacionalidad.getSelectedIndex()==0 || this.DCFechaNac.getDatoFecha() == null || this.DCFechaIngreso.getDatoFecha().equals(null) || this.DCFechaSalida.equals(null)){
-            
-            ErrorAlert er = new ErrorAlert(new JFrame(), true);
-            er.titulo.setText("OOPS...");
-            er.msj.setText("FALTAN CAMPOS DE LLENAR");
-            er.msj1.setText("");
-            er.setVisible(true);
-            
-        }
-        else{
-            if(this.MBRegistrar.getText().equals("GUARDAR")){
-                 if (Opciones.verificaEmpleado(this.txtNombre.getText())
+            if (this.txtNombre.equals("") || this.txtIdentificacion.equals("")
+                    || this.txtProfesion.equals("") || this.txtMailInterno.equals("") || this.txtMailPersonal.equals("")
+                    || this.CBNacionalidad.getSelectedIndex() == 0 || this.DCFechaNac.getDatoFecha() == null || this.DCFechaIngreso.getDatoFecha().equals(null) || this.DCFechaSalida.equals(null)) {
+
+                ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                er.titulo.setText("OOPS...");
+                er.msj.setText("FALTAN CAMPOS DE LLENAR");
+                er.msj1.setText("");
+                er.setVisible(true);
+
+            } else {
+                if (this.MBRegistrar.getText().equals("GUARDAR")) {
+                    if (Opciones.verificaEmpleado(this.txtNombre.getText())
                             && !this.txtNombre.getText().equals(this.nombreEmp.getText())) {
                         ErrorAlert er = new ErrorAlert(new JFrame(), true);
                         er.titulo.setText("OOPS...");
                         er.msj.setText("EL NOMBRE DEL EMPLEADO");
                         er.msj1.setText("YA ÉXISTE");
                         er.setVisible(true);
-                  } 
-                 else 
-                 {
+                    } else {
                         Sentencias s = new Sentencias();
 
                         s.setCodigoE(Integer.parseInt(this.id.getText()));
@@ -636,21 +620,21 @@ public class ModalUsuario extends javax.swing.JDialog {
                         s.setMailInterno(this.txtMailInterno.getText());
                         s.setIdentificacion(this.txtIdentificacion.getText());
                         s.setMailPersonal(this.txtMailPersonal.getText());
-                        if(this.JRBFemenino.isSelected()){
+                        if (this.JRBFemenino.isSelected()) {
                             s.setSexo(this.JRBFemenino.getText());
-                        }else{
-                            if(this.JRBMasculino.isSelected()){
+                        } else {
+                            if (this.JRBMasculino.isSelected()) {
                                 s.setSexo(this.JRBMasculino.getText());
                             }
                         }
-                        
-                        if(this.JRBSoltero.isSelected()){
+
+                        if (this.JRBSoltero.isSelected()) {
                             s.setEstadoCivil(this.JRBSoltero.getText());
-                        }else{
-                            if(this.JRBCasado.isSelected()){
+                        } else {
+                            if (this.JRBCasado.isSelected()) {
                                 s.setEstadoCivil(this.JRBCasado.getText());
-                            }else{
-                                if(this.JRBAcompañado.isSelected()){
+                            } else {
+                                if (this.JRBAcompañado.isSelected()) {
                                     s.setEstadoCivil(this.JRBAcompañado.getText());
                                 }
                             }
@@ -667,69 +651,65 @@ public class ModalUsuario extends javax.swing.JDialog {
                             sa.msj.setText("SE HAN GUARDADO LOS CAMBIOS");
                             sa.msj1.setText("");
                             sa.setVisible(true);
-                        }
-                        else
-                        {
-                              if (Opciones.verificaEmpleado(this.txtNombre.getText())) {
-                        ErrorAlert er = new ErrorAlert(new JFrame(), true);
-                        er.titulo.setText("OOPS...");
-                        er.msj.setText("EL NOMBRE DE USUARIO");
-                        er.msj1.setText("YA ÉXISTE");
-                        er.setVisible(true);
-                    } else {
-                        Sentencias v = new Sentencias();
-                          v.setCodigoE(Integer.parseInt(this.id.getText()));
-                        v.setNombre(this.txtNombre.getText());
-                        v.setProfesion(this.txtProfesion.getText());
-                        v.setMailInterno(this.txtMailInterno.getText());
-                        v.setIdentificacion(this.txtIdentificacion.getText());
-                        v.setMailPersonal(this.txtMailPersonal.getText());
-                        if(this.JRBFemenino.isSelected()){
-                            v.setSexo(this.JRBFemenino.getText());
-                        }else{
-                            if(this.JRBMasculino.isSelected()){
-                                v.setSexo(this.JRBMasculino.getText());
-                            }
-                        }
-                        
-                        if(this.JRBSoltero.isSelected()){
-                            v.setEstadoCivil(this.JRBSoltero.getText());
-                        }else{
-                            if(this.JRBCasado.isSelected()){
-                                v.setEstadoCivil(this.JRBCasado.getText());
-                            }else{
-                                if(this.JRBAcompañado.isSelected()){
-                                    v.setEstadoCivil(this.JRBAcompañado.getText());
+                        } else {
+                            if (Opciones.verificaEmpleado(this.txtNombre.getText())) {
+                                ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                                er.titulo.setText("OOPS...");
+                                er.msj.setText("EL NOMBRE DE USUARIO");
+                                er.msj1.setText("YA ÉXISTE");
+                                er.setVisible(true);
+                            } else {
+                                Sentencias v = new Sentencias();
+                                v.setCodigoE(Integer.parseInt(this.id.getText()));
+                                v.setNombre(this.txtNombre.getText());
+                                v.setProfesion(this.txtProfesion.getText());
+                                v.setMailInterno(this.txtMailInterno.getText());
+                                v.setIdentificacion(this.txtIdentificacion.getText());
+                                v.setMailPersonal(this.txtMailPersonal.getText());
+                                if (this.JRBFemenino.isSelected()) {
+                                    v.setSexo(this.JRBFemenino.getText());
+                                } else {
+                                    if (this.JRBMasculino.isSelected()) {
+                                        v.setSexo(this.JRBMasculino.getText());
+                                    }
+                                }
+
+                                if (this.JRBSoltero.isSelected()) {
+                                    v.setEstadoCivil(this.JRBSoltero.getText());
+                                } else {
+                                    if (this.JRBCasado.isSelected()) {
+                                        v.setEstadoCivil(this.JRBCasado.getText());
+                                    } else {
+                                        if (this.JRBAcompañado.isSelected()) {
+                                            v.setEstadoCivil(this.JRBAcompañado.getText());
+                                        }
+                                    }
+                                }
+                                v.setNacionalidad(this.CBNacionalidad.getSelectedItem().toString());
+                                v.setFechaNacimiento(this.DCFechaNac.getDatoFecha());
+                                v.setFechaIngreso(this.DCFechaIngreso.getDatoFecha());
+                                v.setFechaSalida(this.DCFechaSalida.getDatoFecha());
+                                int op = Opciones.registrar(v);
+                                if (op != 0) {
+                                    limpiarCampos();
+                                    SuccessAlert sa = new SuccessAlert(new JFrame(), true);
+                                    sa.titulo.setText("¡HECHO!");
+                                    sa.msj.setText("SE HA REGISTRADO UN");
+                                    sa.msj1.setText("NUEVO USUARIO");
+                                    sa.setVisible(true);
                                 }
                             }
                         }
-                        v.setNacionalidad(this.CBNacionalidad.getSelectedItem().toString());
-                        v.setFechaNacimiento(this.DCFechaNac.getDatoFecha());
-                        v.setFechaIngreso(this.DCFechaIngreso.getDatoFecha());
-                        v.setFechaSalida(this.DCFechaSalida.getDatoFecha());
-                        int op = Opciones.registrar(v);
-                        if (op != 0) {
-                            limpiarCampos();
-                            SuccessAlert sa = new SuccessAlert(new JFrame(), true);
-                            sa.titulo.setText("¡HECHO!");
-                            sa.msj.setText("SE HA REGISTRADO UN");
-                            sa.msj1.setText("NUEVO USUARIO");
-                            sa.setVisible(true);
-                        }
                     }
-                        }
-                    }
-                 
+
+                }
             }
-        }
 
         }
-
 
         // TODO add your handling code here:
     }//GEN-LAST:event_MBRegistrarKeyTyped
 
-     
     /**
      * @param args the command line arguments
      */
@@ -758,7 +738,7 @@ public class ModalUsuario extends javax.swing.JDialog {
         //</editor-fold>
 
         /* Create and display the form */
-         java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ModalUsuario dialog = new ModalUsuario(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {

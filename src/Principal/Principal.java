@@ -20,19 +20,22 @@ import alertas.principal.ErrorAlert;
 import alertas.principal.FadeEffect;
 import alertas.principal.WarningAlertCerrar;
 import alertas.principal.WarningAlertSalir;
+
 /**
  *
  * @author Latitude
  */
 public class Principal extends javax.swing.JFrame {
-     private boolean minimiza = false;
+
+    private boolean minimiza = false;
     public static boolean cerra = false;
+
     /**
      * Creates new form princip
      */
     public Principal() {
         initComponents();
-        
+
         this.setLocationRelativeTo(null);
     }
 
@@ -54,6 +57,8 @@ public class Principal extends javax.swing.JFrame {
         JPizquierdo = new javax.swing.JPanel();
         BtnRol = new necesario.RSMaterialButtonCircle();
         BtnUsu = new necesario.RSMaterialButtonCircle();
+        BtnUsu1 = new necesario.RSMaterialButtonCircle();
+        BtnUsuario = new necesario.RSMaterialButtonCircle();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(32767, 32767));
@@ -106,8 +111,8 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(minimizar, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
-                    .addComponent(salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(minimizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(salir, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -132,17 +137,31 @@ public class Principal extends javax.swing.JFrame {
 
         JPizquierdo.setBackground(new java.awt.Color(255, 255, 255));
 
-        BtnRol.setText("Roles");
+        BtnRol.setText("CREAR ROLES");
         BtnRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnRolActionPerformed(evt);
             }
         });
 
-        BtnUsu.setText("Usuario");
+        BtnUsu.setText("MODIFICAR USUARIO");
         BtnUsu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnUsuActionPerformed(evt);
+            }
+        });
+
+        BtnUsu1.setText("MODIFICAR  ROL");
+        BtnUsu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnUsu1ActionPerformed(evt);
+            }
+        });
+
+        BtnUsuario.setText("CREAR USUARIOS");
+        BtnUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnUsuarioActionPerformed(evt);
             }
         });
 
@@ -153,6 +172,8 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPizquierdoLayout.createSequentialGroup()
                 .addContainerGap(70, Short.MAX_VALUE)
                 .addGroup(JPizquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BtnUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnUsu1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnRol, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(70, 70, 70))
@@ -160,11 +181,15 @@ public class Principal extends javax.swing.JFrame {
         JPizquierdoLayout.setVerticalGroup(
             JPizquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPizquierdoLayout.createSequentialGroup()
-                .addGap(93, 93, 93)
+                .addGap(37, 37, 37)
                 .addComponent(BtnRol, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
+                .addGap(18, 18, 18)
+                .addComponent(BtnUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(BtnUsu1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(BtnUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -173,28 +198,27 @@ public class Principal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1040, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(rSPanelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JPizquierdo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34))))
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1040, Short.MAX_VALUE)
+                .addContainerGap())
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(rSPanelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(JPizquierdo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JPizquierdo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rSPanelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(rSPanelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JPizquierdo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(82, 82, 82))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -205,21 +229,31 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 54, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void minimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizarActionPerformed
-        this.setExtendedState(ICONIFIED);
-        if (!minimiza) {
-            minimiza = false;
-            this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-        } else {
-            minimiza = true;
-        }
-    }//GEN-LAST:event_minimizarActionPerformed
+    private void BtnUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUsuActionPerformed
+        // TODO add your handling code here:
+
+        ModalUsuario mp = new ModalUsuario(new JFrame(), true);
+        mp.titulo.setText("REGISTRAR");
+        mp.MBRegistrar.setText("REGISTRAR");
+        mp.setVisible(true);
+    }//GEN-LAST:event_BtnUsuActionPerformed
+
+    private void BtnRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRolActionPerformed
+
+        ModalRol mp = new ModalRol(new JFrame(), true);
+        mp.titulo.setText("REGISTRAR");
+        mp.registrar.setText("REGISTRAR");
+        mp.setLocationRelativeTo(null);
+        mp.setVisible(true);
+    }//GEN-LAST:event_BtnRolActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         WarningAlertCerrar wa = new WarningAlertCerrar(this, true);
@@ -229,22 +263,32 @@ public class Principal extends javax.swing.JFrame {
         wa.setVisible(true);
     }//GEN-LAST:event_salirActionPerformed
 
-    private void BtnUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUsuActionPerformed
-        // TODO add your handling code here:
-        
-        ModalUsuario mp = new ModalUsuario(new JFrame(), true);
-        mp.titulo.setText("REGISTRAR");
-        mp.MBRegistrar.setText("REGISTRAR");
-        mp.setVisible(true); 
-    }//GEN-LAST:event_BtnUsuActionPerformed
+    private void minimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizarActionPerformed
+        if (this.getExtendedState() != JFrame.ICONIFIED) {
+            this.setExtendedState(JFrame.ICONIFIED);
+        } else {
+            this.setExtendedState(JFrame.NORMAL);
+        }
+    }//GEN-LAST:event_minimizarActionPerformed
 
-    private void BtnRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRolActionPerformed
-       
-      ModalRol mp = new ModalRol(new JFrame(), true);
-        mp.titulo.setText("REGISTRAR");
-        mp.registrar.setText("REGISTRAR");
-        mp.setVisible(true);      
-    }//GEN-LAST:event_BtnRolActionPerformed
+
+    private void BtnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUsuarioActionPerformed
+        // TODO add your handling code here:
+
+        ModalUsuario mu = new ModalUsuario(new JFrame(), true);
+        mu.titulo.setText("REGISTRAR");
+        mu.setVisible(true);
+
+
+    }//GEN-LAST:event_BtnUsuarioActionPerformed
+
+    private void BtnUsu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUsu1ActionPerformed
+        
+        Roles mr = new Roles();
+
+        mr.setVisible(true);
+        
+    }//GEN-LAST:event_BtnUsu1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -285,6 +329,8 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private necesario.RSMaterialButtonCircle BtnRol;
     private necesario.RSMaterialButtonCircle BtnUsu;
+    private necesario.RSMaterialButtonCircle BtnUsu1;
+    private necesario.RSMaterialButtonCircle BtnUsuario;
     private javax.swing.JPanel JPizquierdo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

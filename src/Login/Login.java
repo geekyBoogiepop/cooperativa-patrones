@@ -119,14 +119,12 @@ public class Login extends javax.swing.JFrame {
         usuario.setBackground(new java.awt.Color(183, 222, 232));
         usuario.setBorder(null);
         usuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        usuario.setOpaque(false);
         usuario.setPlaceholder("INGRESAR USUARIO");
         jPanel1.add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 38, 180, 30));
 
         passw.setBackground(new java.awt.Color(183, 222, 232));
         passw.setBorder(null);
         passw.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        passw.setOpaque(false);
         passw.setPlaceholder("INGRESAR CONTRASEÑA");
         passw.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {

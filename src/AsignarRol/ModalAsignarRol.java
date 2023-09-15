@@ -6,13 +6,11 @@
 package AsignarRol;
 
 import alertas.principal.AWTUtilities;
-import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 import alertas.principal.*;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
-import AsignarRol.CargarCombo;
 
 /**
  *
@@ -33,7 +31,7 @@ public class ModalAsignarRol extends javax.swing.JDialog {
         this.CBEmpleado.removeAllItems();
         carga.consultarRoles(CBRol);
         carga.consultarEmpleados(CBEmpleado);
-        
+        this.setLocationRelativeTo(null);
         
     }
  private void limpiarCampos() {
@@ -55,9 +53,8 @@ public class ModalAsignarRol extends javax.swing.JDialog {
         AWTUtilities.setOpacity(this, trasp);
     }
 
-    private void Ubicar(int y) {
-        this.setLocation(603, y - 300);
-    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -247,7 +244,6 @@ public class ModalAsignarRol extends javax.swing.JDialog {
                 if (i == 0) {
                     Cerrar();
                 } else {
-                    Ubicar(i);
                     i -= 32;
                     Trasparencia((float) i / 352);
                 }
