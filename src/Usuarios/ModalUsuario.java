@@ -32,7 +32,7 @@ public class ModalUsuario extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        AWTUtilities.setOpaque(this, false);
+        // AWTUtilities.setOpaque(this, false);
         this.CBNacionalidad.setCursor(new Cursor(12));
         CBNacionalidad.setModel(new javax.swing.DefaultComboBoxModel(Nacionalidad.paises));
         this.id.setVisible(false);
