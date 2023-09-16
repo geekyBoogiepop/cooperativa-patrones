@@ -4,8 +4,17 @@
  */
 package Socios;
 
+import Conexion.ConexionBD;
+import alertas.principal.ErrorAlert;
+import alertas.principal.SuccessAlert;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.JFrame;
 
 /**
  *
@@ -13,7 +22,9 @@ import java.util.TimerTask;
  */
 public class ModalSocio extends javax.swing.JFrame {
 
-    
+    static ConexionBD cc = new ConexionBD();
+    static Connection cn = cc.conexion();
+    static PreparedStatement ps;
     /**
      * Creates new form ModalSocio
      */
@@ -38,27 +49,27 @@ public class ModalSocio extends javax.swing.JFrame {
         MBLimpiar = new necesario.MaterialButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txtNombre1 = new app.bolivia.swing.JCTextField();
+        txtUsuario = new app.bolivia.swing.JCTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtNombre2 = new app.bolivia.swing.JCTextField();
+        txtRelacion = new app.bolivia.swing.JCTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtNombre3 = new app.bolivia.swing.JCTextField();
+        txtGrupoEconomico = new app.bolivia.swing.JCTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtNombre = new app.bolivia.swing.JCTextField();
-        txtNombre4 = new app.bolivia.swing.JCTextField();
+        txtIdentificacion = new app.bolivia.swing.JCTextField();
+        txtImpuesto = new app.bolivia.swing.JCTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtNombre5 = new app.bolivia.swing.JCTextField();
+        txtAseguradora = new app.bolivia.swing.JCTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtNombre6 = new app.bolivia.swing.JCTextField();
+        txtSucursal = new app.bolivia.swing.JCTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtNombre7 = new app.bolivia.swing.JCTextField();
+        txtOficina = new app.bolivia.swing.JCTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         DCFechaIngreso = new rojeru_san.rsdate.RSDateChooser();
-        txtNombre8 = new app.bolivia.swing.JCTextField();
+        txtEjecutivo = new app.bolivia.swing.JCTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        txtNombre9 = new app.bolivia.swing.JCTextField();
+        txtTipo = new app.bolivia.swing.JCTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(251, 255, 255));
@@ -159,69 +170,69 @@ public class ModalSocio extends javax.swing.JFrame {
         jLabel2.setText("Identificación:");
         jPanel5.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, -1, -1));
 
-        txtNombre1.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre1.setPlaceholder("Nombre Usuario");
-        jPanel5.add(txtNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 330, 40));
+        txtUsuario.setForeground(new java.awt.Color(58, 159, 171));
+        txtUsuario.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtUsuario.setPlaceholder("Nombre Usuario");
+        jPanel5.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 330, 40));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel3.setText("Nombre Usuario:");
         jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
 
-        txtNombre2.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre2.setPlaceholder("Relación");
-        jPanel5.add(txtNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 330, 40));
+        txtRelacion.setForeground(new java.awt.Color(58, 159, 171));
+        txtRelacion.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtRelacion.setPlaceholder("Relación");
+        jPanel5.add(txtRelacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 330, 40));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel4.setText("Relación:");
         jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, -1, -1));
 
-        txtNombre3.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre3.setPlaceholder("Grupo Económico");
-        jPanel5.add(txtNombre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 330, 40));
+        txtGrupoEconomico.setForeground(new java.awt.Color(58, 159, 171));
+        txtGrupoEconomico.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtGrupoEconomico.setPlaceholder("Grupo Económico");
+        jPanel5.add(txtGrupoEconomico, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 330, 40));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel5.setText("Grupo Económico:");
         jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
 
-        txtNombre.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre.setPlaceholder("Identificación");
-        jPanel5.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 330, 40));
+        txtIdentificacion.setForeground(new java.awt.Color(58, 159, 171));
+        txtIdentificacion.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtIdentificacion.setPlaceholder("Identificación");
+        jPanel5.add(txtIdentificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 330, 40));
 
-        txtNombre4.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre4.setPlaceholder("Impuesto Exonerado");
-        jPanel5.add(txtNombre4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 330, 40));
+        txtImpuesto.setForeground(new java.awt.Color(58, 159, 171));
+        txtImpuesto.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtImpuesto.setPlaceholder("Impuesto Exonerado");
+        jPanel5.add(txtImpuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 330, 40));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel6.setText("Impuesto Exonerado:");
         jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, 20));
 
-        txtNombre5.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre5.setPlaceholder("Relación Aseguradora");
-        jPanel5.add(txtNombre5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 330, 40));
+        txtAseguradora.setForeground(new java.awt.Color(58, 159, 171));
+        txtAseguradora.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtAseguradora.setPlaceholder("Relación Aseguradora");
+        jPanel5.add(txtAseguradora, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 330, 40));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel7.setText("Relación Aseguradora:");
         jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, -1, 20));
 
-        txtNombre6.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre6.setPlaceholder("Sucursal Origen");
-        jPanel5.add(txtNombre6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 430, 330, 40));
+        txtSucursal.setForeground(new java.awt.Color(58, 159, 171));
+        txtSucursal.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtSucursal.setPlaceholder("Sucursal Origen");
+        jPanel5.add(txtSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 430, 330, 40));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel8.setText("Sucursal Origen:");
         jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, -1, 20));
 
-        txtNombre7.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre7.setPlaceholder("Oficina Origen");
-        jPanel5.add(txtNombre7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 490, 330, 40));
+        txtOficina.setForeground(new java.awt.Color(58, 159, 171));
+        txtOficina.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtOficina.setPlaceholder("Oficina Origen");
+        jPanel5.add(txtOficina, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 490, 330, 40));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel9.setText("Oficina Origen:");
@@ -235,10 +246,10 @@ public class ModalSocio extends javax.swing.JFrame {
         DCFechaIngreso.setPlaceholder("Fecha de ingreso");
         jPanel5.add(DCFechaIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 550, 310, 50));
 
-        txtNombre8.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre8.setPlaceholder("Ejecutivo");
-        jPanel5.add(txtNombre8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 620, 330, 40));
+        txtEjecutivo.setForeground(new java.awt.Color(58, 159, 171));
+        txtEjecutivo.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtEjecutivo.setPlaceholder("Ejecutivo");
+        jPanel5.add(txtEjecutivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 620, 330, 40));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel11.setText("Ejecutivo:");
@@ -248,10 +259,10 @@ public class ModalSocio extends javax.swing.JFrame {
         jLabel12.setText("Tipo:");
         jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, -1, -1));
 
-        txtNombre9.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre9.setPlaceholder("Tipo");
-        jPanel5.add(txtNombre9, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 330, 40));
+        txtTipo.setForeground(new java.awt.Color(58, 159, 171));
+        txtTipo.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtTipo.setPlaceholder("Tipo");
+        jPanel5.add(txtTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 330, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -279,6 +290,79 @@ public class ModalSocio extends javax.swing.JFrame {
     }//GEN-LAST:event_cerrarActionPerformed
 
     private void MBRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MBRegistrarActionPerformed
+        // Obtén los valores de los campos
+        String txTipo = txtTipo.getText();
+        String usuario = txtUsuario.getText();
+        String txSucursal = txtSucursal.getText();
+        String relacion = txtRelacion.getText();
+        String txOficina = txtOficina.getText();
+        String impuesto = txtImpuesto.getText();
+        String identificacion = txtIdentificacion.getText();
+        String grupoEconomico = txtGrupoEconomico.getText();
+        String txEjecutivo = txtEjecutivo.getText();
+        String aseguradora = txtAseguradora.getText();
+
+// Validaciones
+        if (txTipo.isEmpty() || usuario.isEmpty() || txSucursal.isEmpty() || relacion.isEmpty()
+                || txOficina.isEmpty() || impuesto.isEmpty() || identificacion.isEmpty()
+                || grupoEconomico.isEmpty() || txEjecutivo.isEmpty() || aseguradora.isEmpty()) {
+            // Mostrar una alerta de error si algún campo está vacío
+            ErrorAlert er = new ErrorAlert(new JFrame(), true);
+            er.titulo.setText("Error al ingresar los datos...");
+            er.msj.setText("Por favor");
+            er.msj1.setText(" complete todos los campos.");
+            er.setVisible(true);
+        } else {
+            try {
+                Integer tipo = Integer.valueOf(txTipo);
+                Integer sucursal = Integer.valueOf(txSucursal);
+                Integer oficina = Integer.valueOf(txOficina);
+                Integer ejecutivo = Integer.valueOf(txEjecutivo);
+
+                Date fecha = DCFechaIngreso.getDatoFecha();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String fechaISO = dateFormat.format(fecha);
+
+                String query = "INSERT INTO socio (codigoSocio, tipoId, identificacion, nombreUsual, relacion, grupoEconomico, exoneradoImpuesto, relacionAseguradora, sucursalOrigen, oficinaOrigen, fechaIngreso, ejecutivo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                ps = cn.prepareStatement(query);
+                ps.setInt(1, 0);
+                ps.setInt(2, tipo);
+                ps.setString(3, identificacion);
+                ps.setString(4, usuario);
+                ps.setString(5, relacion);
+                ps.setString(6, grupoEconomico);
+                ps.setString(7, impuesto);
+                ps.setString(8, aseguradora);
+                ps.setInt(9, sucursal);
+                ps.setInt(10, oficina);
+                ps.setString(11, fechaISO);
+                ps.setInt(12, ejecutivo);
+
+                ps.executeUpdate();
+
+                limpiarCampos();
+                SuccessAlert sa = new SuccessAlert(new JFrame(), true);
+                sa.titulo.setText("¡HECHO!");
+                sa.msj.setText("SE HA REGISTRADO UN");
+                sa.msj1.setText("NUEVO SOCIO");
+                sa.setVisible(true);
+
+            } catch (NumberFormatException e) {
+                // Mostrar una alerta de error si se produce un error al convertir un número
+                ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                er.titulo.setText("Error al ingresar los datos...");
+                er.msj.setText("Por favor, ingrese");
+                er.msj1.setText("valores numéricos válidos en los campos correspondientes.");
+                er.setVisible(true);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                er.titulo.setText("Error al ingresar los datos...");
+                er.msj.setText("ERROR AL INGRESAR LOS DATOS");
+                er.msj1.setText(e.getMessage());
+                er.setVisible(true);
+            }
+        }
 
     }//GEN-LAST:event_MBRegistrarActionPerformed
 
@@ -287,7 +371,7 @@ public class ModalSocio extends javax.swing.JFrame {
     }//GEN-LAST:event_MBRegistrarKeyTyped
 
     private void MBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MBLimpiarActionPerformed
-
+        limpiarCampos();
     }//GEN-LAST:event_MBLimpiarActionPerformed
 
     /**
@@ -345,15 +429,28 @@ public class ModalSocio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     public static javax.swing.JLabel titulo;
-    public static app.bolivia.swing.JCTextField txtNombre;
-    public static app.bolivia.swing.JCTextField txtNombre1;
-    public static app.bolivia.swing.JCTextField txtNombre2;
-    public static app.bolivia.swing.JCTextField txtNombre3;
-    private app.bolivia.swing.JCTextField txtNombre4;
-    public static app.bolivia.swing.JCTextField txtNombre5;
-    public static app.bolivia.swing.JCTextField txtNombre6;
-    public static app.bolivia.swing.JCTextField txtNombre7;
-    public static app.bolivia.swing.JCTextField txtNombre8;
-    public static app.bolivia.swing.JCTextField txtNombre9;
+    public static app.bolivia.swing.JCTextField txtAseguradora;
+    public static app.bolivia.swing.JCTextField txtEjecutivo;
+    public static app.bolivia.swing.JCTextField txtGrupoEconomico;
+    public static app.bolivia.swing.JCTextField txtIdentificacion;
+    public static app.bolivia.swing.JCTextField txtImpuesto;
+    public static app.bolivia.swing.JCTextField txtOficina;
+    public static app.bolivia.swing.JCTextField txtRelacion;
+    public static app.bolivia.swing.JCTextField txtSucursal;
+    public static app.bolivia.swing.JCTextField txtTipo;
+    public static app.bolivia.swing.JCTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    private void limpiarCampos() {
+        txtTipo.setText("");
+        txtUsuario.setText("");
+        txtSucursal.setText("");
+        txtRelacion.setText("");
+        txtOficina.setText("");
+        txtImpuesto.setText("");
+        txtIdentificacion.setText("");
+        txtGrupoEconomico.setText("");
+        txtEjecutivo.setText("");
+        txtAseguradora.setText("");
+    }
 }
