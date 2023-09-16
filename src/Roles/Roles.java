@@ -52,7 +52,6 @@ public class Roles extends javax.swing.JFrame {
         AWTUtilities.setOpacity(this, trasp);
     }
 
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -296,6 +295,16 @@ public class Roles extends javax.swing.JFrame {
                 er.msj1.setText("REGISTRO");
                 er.setVisible(true);
             } else {
+                try {
+                    ModalRol mod = new ModalRol(new JFrame(), true, ObtenerDatos(2), Integer.parseInt(ObtenerDatos(1)));
+                    mod.titulo.setText("GUARDAR");
+                    mod.registrar.setText("GUARDAR");
+                    mod.setVisible(true);
+                    try {
+                        ActualizarTabla();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Roles.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
 //                int fila = this.tabla.getSelectedRow();
 //
@@ -308,6 +317,9 @@ public class Roles extends javax.swing.JFrame {
 //                //                mp.titulo.setText("MODIFICAR");
 //                //                mp.registrar.setText("GUARDAR");
 //                //                mp.setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Roles.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }//GEN-LAST:event_modificarActionPerformed
@@ -372,11 +384,29 @@ public class Roles extends javax.swing.JFrame {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("CODIGO");
         modelo.addColumn("NOMBRE");
-        
-        while(rs.next()){
-            modelo.addRow(new Object[]{rs.getInt("codigoRol"),rs.getString("nombreRol")});
+
+        while (rs.next()) {
+            modelo.addRow(new Object[]{rs.getInt("codigoRol"), rs.getString("nombreRol")});
         }
         tabla.setModel(modelo);
-        
+
+    }
+
+    private String ObtenerDatos(int opc) throws SQLException {
+        int i;
+        i = tabla.getSelectedRow();
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        String codigo = String.valueOf(modelo.getValueAt(i, 0));
+        String sql = "SELECT * FROM Rol where codigoRol = " + codigo;
+        Statement st = cn.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+            if (opc == 1) {
+                return String.valueOf(rs.getInt("codigoRol"));
+            } else {
+                return rs.getString("nombreRol");
+            }
+        }
+        return "Error";
     }
 }
