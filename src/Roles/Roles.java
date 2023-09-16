@@ -374,6 +374,8 @@ public class Roles extends javax.swing.JFrame {
         modelo.addColumn("NOMBRE");
         
         while(rs.next()){
+            System.out.println(rs.getInt("codigoRol"));
+            System.out.println(rs.getString("nombreRol"));
             modelo.addRow(new Object[]{rs.getInt("codigoRol"),rs.getString("nombreRol")});
         }
         tabla.setModel(modelo);
