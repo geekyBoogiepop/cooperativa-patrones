@@ -17,17 +17,19 @@ import javax.swing.JFrame;
  * @author Latitude
  */
 public class Roles extends javax.swing.JFrame {
- Timer timer = null;
+
+    Timer timer = null;
     TimerTask task;
     int i = 32;
+
     /**
-    /**
+     * /**
      * Creates new form Roles
      */
     public Roles() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
-
 
     private void Cerrar() {
         this.dispose();
@@ -39,9 +41,7 @@ public class Roles extends javax.swing.JFrame {
         AWTUtilities.setOpacity(this, trasp);
     }
 
-    private void Ubicar(int y) {
-        this.setLocation(603, y - 10);
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,7 +64,8 @@ public class Roles extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(58, 159, 171), 5));
@@ -74,12 +75,11 @@ public class Roles extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(58, 159, 171));
 
-        salir.setBackground(new java.awt.Color(255, 255, 255));
         salir.setForeground(new java.awt.Color(58, 159, 171));
         salir.setText("X");
         salir.setToolTipText("<html> <head> <style> #contenedor{background:white;color:black; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Cerrar</h4> </body> </html>");
         salir.setAlignmentX(0.5F);
-        salir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        salir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         salir.setFont(new java.awt.Font("Roboto Medium", 1, 20)); // NOI18N
         salir.setPreferredSize(new java.awt.Dimension(54, 34));
         salir.addActionListener(new java.awt.event.ActionListener() {
@@ -120,10 +120,9 @@ public class Roles extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(58, 159, 171));
 
-        nuevo.setBackground(new java.awt.Color(255, 255, 255));
         nuevo.setForeground(new java.awt.Color(58, 159, 171));
         nuevo.setText("NUEVO ROL");
-        nuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        nuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         nuevo.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
         nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,10 +130,9 @@ public class Roles extends javax.swing.JFrame {
             }
         });
 
-        modificar.setBackground(new java.awt.Color(255, 255, 255));
         modificar.setForeground(new java.awt.Color(58, 159, 171));
         modificar.setText("MODIFICAR");
-        modificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        modificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         modificar.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
         modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,9 +188,8 @@ public class Roles extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabla.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tabla.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tabla.setDoubleBuffered(true);
-        tabla.setRowHeight(20);
         tabla.setSelectionBackground(new java.awt.Color(0, 153, 255));
         tabla.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabla);
@@ -246,11 +243,19 @@ public class Roles extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
-        WarningAlertCerrar wa = new WarningAlertCerrar(this, true);
-        wa.titulo.setText("¿ESTAS SEGURO?");
-        wa.msj.setText("SE CERRARA LA APLICACIÓN");
-        wa.msj1.setText("");
-        wa.setVisible(true);
+        task = new TimerTask() {
+            @Override
+            public void run() {
+                if (i == 0) {
+                    Cerrar();
+                } else {
+                    i -= 32;
+                    Trasparencia((float) i / 352);
+                }
+            }
+        };
+        timer = new Timer();
+        timer.schedule(task, 0, 2);
     }//GEN-LAST:event_salirActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed

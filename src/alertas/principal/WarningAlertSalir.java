@@ -31,7 +31,7 @@ public class WarningAlertSalir extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         AWTUtilities.setOpaque(this, false);
-        Ubicar(0);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -171,7 +171,6 @@ public class WarningAlertSalir extends javax.swing.JDialog {
                 if (i == 0) {
                     Cerrar();
                 } else {
-                    Ubicar(i);
                     i -= 32;
                     Trasparencia((float) i / 352);
                 }
@@ -188,7 +187,6 @@ public class WarningAlertSalir extends javax.swing.JDialog {
                 if (i == 352) {
                     timer.cancel();
                 } else {
-                    Ubicar(i);
                     i += 32;
                     Trasparencia((float) i / 352);
                 }
@@ -399,7 +397,4 @@ public class WarningAlertSalir extends javax.swing.JDialog {
         AWTUtilities.setOpacity(this, trasp);
     }
 
-    private void Ubicar(int y) {
-        this.setLocation(450, y - 120);
-    }
 }
