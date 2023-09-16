@@ -5,12 +5,20 @@
  */
 package Roles;
 
+import Conexion.ConexionBD;
 import alertas.principal.AWTUtilities;
 import alertas.principal.ErrorAlert;
 import alertas.principal.WarningAlertCerrar;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,14 +29,17 @@ public class Roles extends javax.swing.JFrame {
     Timer timer = null;
     TimerTask task;
     int i = 32;
+    static ConexionBD cc = new ConexionBD();
+    static Connection cn = cc.conexion();
 
     /**
      * /**
      * Creates new form Roles
      */
-    public Roles() {
+    public Roles() throws SQLException {
         initComponents();
         this.setLocationRelativeTo(null);
+        ActualizarTabla();
     }
 
     private void Cerrar() {
@@ -263,6 +274,11 @@ public class Roles extends javax.swing.JFrame {
         mp.titulo.setText("REGISTRAR");
         mp.registrar.setText("REGISTRAR");
         mp.setVisible(true);
+        try {
+            ActualizarTabla();
+        } catch (SQLException ex) {
+            Logger.getLogger(Roles.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
@@ -326,7 +342,11 @@ public class Roles extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Roles().setVisible(true);
+                try {
+                    new Roles().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Roles.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -345,4 +365,20 @@ public class Roles extends javax.swing.JFrame {
     private principal.MaterialButton salir;
     public static javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
+    private void ActualizarTabla() throws SQLException {
+        String sql = "SELECT * FROM Rol";
+        Statement st = cn.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("CODIGO");
+        modelo.addColumn("NOMBRE");
+        
+        while(rs.next()){
+            System.out.println(rs.getInt("codigoRol"));
+            System.out.println(rs.getString("nombreRol"));
+            modelo.addRow(new Object[]{rs.getInt("codigoRol"),rs.getString("nombreRol")});
+        }
+        tabla.setModel(modelo);
+        
+    }
 }
