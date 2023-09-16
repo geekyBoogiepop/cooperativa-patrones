@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Natural;
+package Trabajo;
 
 /**
  *
  * @author criso
  */
-public class ModalNatural extends javax.swing.JFrame {
+public class ModalTrabajo extends javax.swing.JFrame {
 
     /**
-     * Creates new form ModalNatural
+     * Creates new form ModalTrabajo
      */
-    public ModalNatural() {
+    public ModalTrabajo() {
         initComponents();
     }
 
@@ -33,39 +33,24 @@ public class ModalNatural extends javax.swing.JFrame {
         MBRegistrar = new necesario.MaterialButton();
         MBLimpiar = new necesario.MaterialButton();
         jPanel5 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         txtNombre1 = new app.bolivia.swing.JCTextField();
         jLabel3 = new javax.swing.JLabel();
         txtNombre2 = new app.bolivia.swing.JCTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtNombre3 = new app.bolivia.swing.JCTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtNombre = new app.bolivia.swing.JCTextField();
         txtNombre4 = new app.bolivia.swing.JCTextField();
         jLabel6 = new javax.swing.JLabel();
         txtNombre5 = new app.bolivia.swing.JCTextField();
         jLabel7 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        txtNombre9 = new app.bolivia.swing.JCTextField();
+        txtNombre6 = new app.bolivia.swing.JCTextField();
         jLabel8 = new javax.swing.JLabel();
         txtNombre7 = new app.bolivia.swing.JCTextField();
         jLabel9 = new javax.swing.JLabel();
+        DCFechaIngreso = new rojeru_san.rsdate.RSDateChooser();
         jLabel10 = new javax.swing.JLabel();
-        txtNombre8 = new app.bolivia.swing.JCTextField();
-        jLabel12 = new javax.swing.JLabel();
-        txtNombre9 = new app.bolivia.swing.JCTextField();
-        DCFechaNac = new rojeru_san.rsdate.RSDateChooser();
-        jLabel11 = new javax.swing.JLabel();
-        txtNombre10 = new app.bolivia.swing.JCTextField();
-        txtNombre11 = new app.bolivia.swing.JCTextField();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        txtNombre12 = new app.bolivia.swing.JCTextField();
-        jLabel15 = new javax.swing.JLabel();
-        txtNombre13 = new app.bolivia.swing.JCTextField();
-        jLabel16 = new javax.swing.JLabel();
-        txtNombre14 = new app.bolivia.swing.JCTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
 
         jPanel3.setBackground(new java.awt.Color(58, 159, 171));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.gray, java.awt.Color.gray));
@@ -73,7 +58,7 @@ public class ModalNatural extends javax.swing.JFrame {
         titulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         titulo.setForeground(new java.awt.Color(255, 255, 255));
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo.setText("NATURAL");
+        titulo.setText("TRABAJO");
 
         cerrar.setBackground(new java.awt.Color(251, 255, 255));
         cerrar.setForeground(new java.awt.Color(58, 159, 171));
@@ -93,7 +78,7 @@ public class ModalNatural extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 789, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 293, Short.MAX_VALUE)
                 .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -150,7 +135,7 @@ public class ModalNatural extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MBLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MBRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -158,139 +143,76 @@ public class ModalNatural extends javax.swing.JFrame {
         jPanel5.setBorder(dropShadowBorder1);
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel2.setText("Apellido Materno:");
-        jPanel5.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, -1));
-
         txtNombre1.setForeground(new java.awt.Color(58, 159, 171));
         txtNombre1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre1.setPlaceholder("Nombres");
-        jPanel5.add(txtNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 330, 40));
+        txtNombre1.setPlaceholder("Fecha Ingreso");
+        jPanel5.add(txtNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 330, 40));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel3.setText("Nombres:");
-        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, -1, -1));
+        jLabel3.setText("Fecha Ingreso:");
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, -1, -1));
 
         txtNombre2.setForeground(new java.awt.Color(58, 159, 171));
         txtNombre2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre2.setPlaceholder("Nacionalidad");
-        jPanel5.add(txtNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 330, 40));
+        txtNombre2.setPlaceholder("Dirección");
+        jPanel5.add(txtNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 330, 40));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel4.setText("Nacionalidad:");
-        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, -1, -1));
-
-        txtNombre3.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre3.setPlaceholder("Profesión");
-        jPanel5.add(txtNombre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 330, 40));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel5.setText("Profesión:");
-        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, -1, -1));
-
-        txtNombre.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre.setPlaceholder("Apellido Materno");
-        jPanel5.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 330, 40));
+        jLabel4.setText("Dirección:");
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
 
         txtNombre4.setForeground(new java.awt.Color(58, 159, 171));
         txtNombre4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre4.setPlaceholder("Nivel Eduacional");
-        jPanel5.add(txtNombre4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 330, 40));
+        txtNombre4.setPlaceholder("Teléfono");
+        jPanel5.add(txtNombre4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 330, 40));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel6.setText("Nivel Eduacional:");
-        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, -1, 20));
+        jLabel6.setText("Teléfono:");
+        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, -1, 20));
 
         txtNombre5.setForeground(new java.awt.Color(58, 159, 171));
         txtNombre5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre5.setPlaceholder("Estado Civil");
-        jPanel5.add(txtNombre5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 330, 40));
+        txtNombre5.setPlaceholder("Función");
+        jPanel5.add(txtNombre5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 330, 40));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel7.setText("Estado Civil:");
-        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, -1, 20));
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel8.setText("Fecha Nacimiento:");
-        jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, 20));
-
-        txtNombre7.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre7.setPlaceholder("Tipo Vivienda");
-        jPanel5.add(txtNombre7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 420, 330, 40));
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel9.setText("Tipo Vivienda:");
-        jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 430, -1, 20));
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel10.setText("Número Dependencia:");
-        jPanel5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, -1, 20));
-
-        txtNombre8.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre8.setPlaceholder("Número Dependencia");
-        jPanel5.add(txtNombre8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, 330, 40));
+        jLabel7.setText("Función:");
+        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, 20));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel12.setText("Apellido Paterno:");
+        jLabel12.setText("Nombre Empresa:");
         jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
 
         txtNombre9.setForeground(new java.awt.Color(58, 159, 171));
         txtNombre9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre9.setPlaceholder("Apellido Paterno");
-        jPanel5.add(txtNombre9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 330, 40));
+        txtNombre9.setPlaceholder("Nombre Empresa");
+        jPanel5.add(txtNombre9, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 330, 40));
 
-        DCFechaNac.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        DCFechaNac.setPlaceholder("Fecha de nacimiento");
-        jPanel5.add(DCFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 310, 40));
+        txtNombre6.setForeground(new java.awt.Color(58, 159, 171));
+        txtNombre6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtNombre6.setPlaceholder("Tipo Contrato");
+        jPanel5.add(txtNombre6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 330, 40));
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel11.setText("Estado:");
-        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 530, -1, 20));
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel8.setText("Tipo Contrato:");
+        jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, -1, 20));
 
-        txtNombre10.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre10.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre10.setPlaceholder("Estado");
-        jPanel5.add(txtNombre10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 520, 330, 40));
+        txtNombre7.setForeground(new java.awt.Color(58, 159, 171));
+        txtNombre7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtNombre7.setPlaceholder("Cargo");
+        jPanel5.add(txtNombre7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 330, 40));
 
-        txtNombre11.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre11.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre11.setPlaceholder("Sector Económico");
-        jPanel5.add(txtNombre11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 570, 330, 40));
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel9.setText("Cargo:");
+        jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 390, -1, 20));
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel13.setText("Sector Económico:");
-        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 580, -1, 20));
+        DCFechaIngreso.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        DCFechaIngreso.setPlaceholder("Fecha de ingreso");
+        jPanel5.add(DCFechaIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 440, 310, 50));
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel14.setText("Actividad Principal:");
-        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, -1, 20));
-
-        txtNombre12.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre12.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre12.setPlaceholder("Actividad Principal:");
-        jPanel5.add(txtNombre12, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 20, 330, 40));
-
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel15.setText("Secundaria Principal:");
-        jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 90, -1, 20));
-
-        txtNombre13.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre13.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre13.setPlaceholder("Secundaria Principal:");
-        jPanel5.add(txtNombre13, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 80, 330, 40));
-
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel16.setText("Ocupación:");
-        jPanel5.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 140, -1, 20));
-
-        txtNombre14.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre14.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre14.setPlaceholder("Secundaria Principal:");
-        jPanel5.add(txtNombre14, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 330, 40));
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel10.setText("Fecha Ingreso:");
+        jPanel5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 450, -1, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -298,23 +220,19 @@ public class ModalNatural extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1129, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 654, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(62, 62, 62)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(82, Short.MAX_VALUE)))
         );
 
         pack();
@@ -353,40 +271,33 @@ public class ModalNatural extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModalNatural.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModalTrabajo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModalNatural.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModalTrabajo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModalNatural.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModalTrabajo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModalNatural.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModalTrabajo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ModalNatural().setVisible(true);
+                new ModalTrabajo().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static rojeru_san.rsdate.RSDateChooser DCFechaNac;
+    public static rojeru_san.rsdate.RSDateChooser DCFechaIngreso;
     private necesario.MaterialButton MBLimpiar;
     public static necesario.MaterialButton MBRegistrar;
     private principal.MaterialButton cerrar;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -395,19 +306,12 @@ public class ModalNatural extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     public static javax.swing.JLabel titulo;
-    public static app.bolivia.swing.JCTextField txtNombre;
     public static app.bolivia.swing.JCTextField txtNombre1;
-    public static app.bolivia.swing.JCTextField txtNombre10;
-    public static app.bolivia.swing.JCTextField txtNombre11;
-    public static app.bolivia.swing.JCTextField txtNombre12;
-    public static app.bolivia.swing.JCTextField txtNombre13;
-    public static app.bolivia.swing.JCTextField txtNombre14;
     public static app.bolivia.swing.JCTextField txtNombre2;
-    public static app.bolivia.swing.JCTextField txtNombre3;
     public static app.bolivia.swing.JCTextField txtNombre4;
     public static app.bolivia.swing.JCTextField txtNombre5;
+    public static app.bolivia.swing.JCTextField txtNombre6;
     public static app.bolivia.swing.JCTextField txtNombre7;
-    public static app.bolivia.swing.JCTextField txtNombre8;
     public static app.bolivia.swing.JCTextField txtNombre9;
     // End of variables declaration//GEN-END:variables
 }
