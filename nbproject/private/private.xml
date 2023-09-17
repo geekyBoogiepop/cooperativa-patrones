@@ -3,12 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/fljus/OneDrive/Documents/NetBeansProjects/cooperativa-patrones/src/Principal/Principal.java</file>
-            <file>file:/C:/Users/fljus/OneDrive/Documents/NetBeansProjects/cooperativa-patrones/src/Natural/ModalNatural.java</file>
-            <file>file:/C:/Users/fljus/OneDrive/Documents/NetBeansProjects/cooperativa-patrones/src/Roles/Opciones.java</file>
-            <file>file:/C:/Users/fljus/OneDrive/Documents/NetBeansProjects/cooperativa-patrones/src/Usuarios/Opciones.java</file>
-            <file>file:/C:/Users/fljus/OneDrive/Documents/NetBeansProjects/cooperativa-patrones/src/Socios/ModalSocio.java</file>
-            <file>file:/C:/Users/fljus/OneDrive/Documents/NetBeansProjects/cooperativa-patrones/src/Roles/ModalRol.java</file>
+            <file>file:/C:/Users/tempo/Proyecto%20Github/Primero/cooperativa-patrones/src/Usuarios/ModalUsuario.java</file>
+            <file>file:/C:/Users/tempo/Proyecto%20Github/Primero/cooperativa-patrones/src/Roles/Sentencias.java</file>
+            <file>file:/C:/Users/tempo/Proyecto%20Github/Primero/cooperativa-patrones/src/Natural/ModalNatural.java</file>
+            <file>file:/C:/Users/tempo/Proyecto%20Github/Primero/cooperativa-patrones/src/Principal/Principal.java</file>
+            <file>file:/C:/Users/tempo/Proyecto%20Github/Primero/cooperativa-patrones/src/Telefono/Sentencias.java</file>
+            <file>file:/C:/Users/tempo/Proyecto%20Github/Primero/cooperativa-patrones/src/Usuarios/Nacionalidad.java</file>
+            <file>file:/C:/Users/tempo/Proyecto%20Github/Primero/cooperativa-patrones/src/Conexion/ConexionBD.java</file>
+            <file>file:/C:/Users/tempo/Proyecto%20Github/Primero/cooperativa-patrones/src/Roles/ModalRol.java</file>
+            <file>file:/C:/Users/tempo/Proyecto%20Github/Primero/cooperativa-patrones/src/Usuarios/Sentencias.java</file>
+            <file>file:/C:/Users/tempo/Proyecto%20Github/Primero/cooperativa-patrones/src/fuentes/Fuentes.java</file>
+            <file>file:/C:/Users/tempo/Proyecto%20Github/Primero/cooperativa-patrones/src/Telefono/ModalTelefono.java</file>
+            <file>file:/C:/Users/tempo/Proyecto%20Github/Primero/cooperativa-patrones/src/Telefono/Extensiones.java</file>
+            <file>file:/C:/Users/tempo/Proyecto%20Github/Primero/cooperativa-patrones/src/Telefono/ModalTelefono1.java</file>
         </group>
     </open-files>
 </project-private>
