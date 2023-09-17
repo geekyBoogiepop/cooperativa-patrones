@@ -5,6 +5,9 @@
  */
 package Usuarios;
 
+import Conexion.ConexionBD;
+import static Documentos.ModalDocumentos.DCFechaCaducidad;
+import static Documentos.ModalDocumentos.DCFechaReferencia;
 import alertas.principal.AWTUtilities;
 import java.awt.Cursor;
 import java.util.Timer;
@@ -13,6 +16,11 @@ import alertas.principal.AWTUtilities;
 import alertas.principal.ErrorAlert;
 import alertas.principal.SuccessAlert;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JFrame;
 
 /**
@@ -24,6 +32,10 @@ public class ModalUsuario extends javax.swing.JDialog {
     Timer timer = null;
     TimerTask task;
     int i = 32;
+
+    static ConexionBD cc = new ConexionBD();
+    static Connection cn = cc.conexion();
+    static PreparedStatement ps;
 
     /**
      * Creates new form ModalUsuario
@@ -459,116 +471,108 @@ public class ModalUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_MBLimpiarActionPerformed
 
     private void MBRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MBRegistrarActionPerformed
-        if (this.txtNombre.getText().isEmpty() || this.txtIdentificacion.getText().isEmpty()
-                || this.txtProfesion.getText().isEmpty() || this.txtMailInterno.getText().isEmpty()
-                || this.txtMailPersonal.getText().isEmpty() || this.CBNacionalidad.getSelectedIndex() == 0
-                || this.DCFechaNac.getDatoFecha() == null || this.DCFechaIngreso.getDatoFecha() == null
-                || this.DCFechaSalida.getDatoFecha() == null) {
 
-            ErrorAlert er = new ErrorAlert(new JFrame(), true);
-            er.titulo.setText("OOPS...");
-            er.msj.setText("FALTAN CAMPOS DE LLENAR");
-            er.msj1.setText("");
-            er.setVisible(true);
+        if (this.MBRegistrar.getText().equals("REGISTRAR")) {
 
-        } else {
-            if (this.MBRegistrar.getText().equals("GUARDAR")) {
-                if (Opciones.verificaEmpleado(this.txtNombre.getText())
-                        && !this.txtNombre.getText().equals(this.nombreEmp.getText())) {
-                    ErrorAlert er = new ErrorAlert(new JFrame(), true);
-                    er.titulo.setText("OOPS...");
-                    er.msj.setText("EL NOMBRE DEL EMPLEADO YA EXISTE");
-                    er.msj1.setText("");
-                    er.setVisible(true);
-                } else {
-                    Sentencias s = new Sentencias();
-                    s.setCodigoE(Integer.parseInt(this.id.getText()));
-                    s.setNombre(this.txtNombre.getText());
-                    s.setProfesion(this.txtProfesion.getText());
-                    s.setMailInterno(this.txtMailInterno.getText());
-                    s.setIdentificacion(this.txtIdentificacion.getText());
-                    s.setMailPersonal(this.txtMailPersonal.getText());
+            // Validaciones
+            if (this.txtNombre.getText().isEmpty() || this.txtIdentificacion.getText().isEmpty()
+                    || this.txtProfesion.getText().isEmpty() || this.txtMailInterno.getText().isEmpty()
+                    || this.txtMailPersonal.getText().isEmpty() || this.CBNacionalidad.getSelectedIndex() == 0
+                    || this.DCFechaNac.getDatoFecha() == null || this.DCFechaIngreso.getDatoFecha() == null
+                    || this.DCFechaSalida.getDatoFecha() == null) {
+
+                // Mostrar una alerta de error si algún campo está vacío
+                ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                er.titulo.setText("Error al ingresar los datos...");
+                er.msj.setText("Por favor");
+                er.msj1.setText("Complete todos los campos.");
+                er.setVisible(true);
+
+            } else {
+                try {
+                    Sentencias v = new Sentencias();
+                    v.setNombre(this.txtNombre.getText());
+                    v.setProfesion(this.txtProfesion.getText());
+                    v.setMailInterno(this.txtMailInterno.getText());
+                    v.setIdentificacion(this.txtIdentificacion.getText());
+                    v.setMailPersonal(this.txtMailPersonal.getText());
 
                     if (this.JRBFemenino.isSelected()) {
-                        s.setSexo(this.JRBFemenino.getText());
+                        v.setSexo(this.JRBFemenino.getText());
                     } else if (this.JRBMasculino.isSelected()) {
-                        s.setSexo(this.JRBMasculino.getText());
+                        v.setSexo(this.JRBMasculino.getText());
                     }
 
                     if (this.JRBSoltero.isSelected()) {
-                        s.setEstadoCivil(this.JRBSoltero.getText());
+                        v.setEstadoCivil(this.JRBSoltero.getText());
                     } else if (this.JRBCasado.isSelected()) {
-                        s.setEstadoCivil(this.JRBCasado.getText());
+                        v.setEstadoCivil(this.JRBCasado.getText());
                     } else if (this.JRBAcompañado.isSelected()) {
-                        s.setEstadoCivil(this.JRBAcompañado.getText());
+                        v.setEstadoCivil(this.JRBAcompañado.getText());
                     }
 
-                    s.setNacionalidad(this.CBNacionalidad.getSelectedItem().toString());
-                    s.setFechaNacimiento(this.DCFechaNac.getDatoFecha());
-                    s.setFechaIngreso(this.DCFechaIngreso.getDatoFecha());
-                    s.setFechaSalida(this.DCFechaSalida.getDatoFecha());
+                    v.setNacionalidad(this.CBNacionalidad.getSelectedItem().toString());
 
-                    int opcion = Opciones.actualizar(s);
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-                    if (opcion != 0) {
-                        SuccessAlert sa = new SuccessAlert(new JFrame(), true);
-                        sa.titulo.setText("¡HECHO!");
-                        sa.msj.setText("SE HAN GUARDADO LOS CAMBIOS");
-                        sa.msj1.setText("");
-                        sa.setVisible(true);
-                    } else {
-                        ErrorAlert er = new ErrorAlert(new JFrame(), true);
-                        er.titulo.setText("OOPS...");
-                        er.msj.setText("OCURRIÓ UN ERROR AL ACTUALIZAR");
-                        er.msj1.setText("");
-                        er.setVisible(true);
-                    }
-                }
-            } else {
-                Sentencias v = new Sentencias();
-                v.setNombre(this.txtNombre.getText());
-                v.setProfesion(this.txtProfesion.getText());
-                v.setMailInterno(this.txtMailInterno.getText());
-                v.setIdentificacion(this.txtIdentificacion.getText());
-                v.setMailPersonal(this.txtMailPersonal.getText());
+                    Date _DCFechaNac = DCFechaNac.getDatoFecha();
+                    String fechaNac = dateFormat.format(_DCFechaNac);
 
-                if (this.JRBFemenino.isSelected()) {
-                    v.setSexo(this.JRBFemenino.getText());
-                } else if (this.JRBMasculino.isSelected()) {
-                    v.setSexo(this.JRBMasculino.getText());
-                }
+                    Date _DCFechaIngreso = DCFechaIngreso.getDatoFecha();
+                    String fechaIngreso = dateFormat.format(_DCFechaIngreso);
 
-                if (this.JRBSoltero.isSelected()) {
-                    v.setEstadoCivil(this.JRBSoltero.getText());
-                } else if (this.JRBCasado.isSelected()) {
-                    v.setEstadoCivil(this.JRBCasado.getText());
-                } else if (this.JRBAcompañado.isSelected()) {
-                    v.setEstadoCivil(this.JRBAcompañado.getText());
-                }
+                    Date _DCFechaSalida = DCFechaSalida.getDatoFecha();
+                    String fechaSalida = dateFormat.format(_DCFechaSalida);
 
-                v.setNacionalidad(this.CBNacionalidad.getSelectedItem().toString());
-                v.setFechaNacimiento(this.DCFechaNac.getDatoFecha());
-                v.setFechaIngreso(this.DCFechaIngreso.getDatoFecha());
-                v.setFechaSalida(this.DCFechaSalida.getDatoFecha());
+                    String query = "INSERT INTO empleado(Nombre,Identificacion,sexo,estadoCivil,Profesion,Nacionalidad,FechaNacimiento,FechaIngreso,FechaSalida,MailInterno,MailPersonal) "
+                            + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                    ps = cn.prepareStatement(query);
+                    ps.setString(1, v.getNombre());
+                    ps.setString(2, v.getIdentificacion());
+                    ps.setString(3, v.getSexo());
+                    ps.setString(4, v.getEstadoCivil());
+                    ps.setString(5, v.getProfesion());
+                    ps.setString(6, v.getNacionalidad());
+                    ps.setString(7, fechaNac);
+                    ps.setString(8, fechaIngreso);
+                    ps.setString(9, fechaSalida);
+                    ps.setString(10, v.getMailInterno());
+                    ps.setString(11, v.getMailPersonal());
 
-                int op = Opciones.registrar(v);
+                    ps.executeUpdate();
 
-                if (op != 0) {
                     limpiarCampos();
+
                     SuccessAlert sa = new SuccessAlert(new JFrame(), true);
                     sa.titulo.setText("¡HECHO!");
-                    sa.msj.setText("SE HA REGISTRADO UN NUEVO USUARIO");
-                    sa.msj1.setText("");
+                    sa.msj.setText("SE HA REGISTRADO");
+                    sa.msj1.setText("LOS DATOS DEL USUARIO/EMPLEADO!");
                     sa.setVisible(true);
-                } else {
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
                     ErrorAlert er = new ErrorAlert(new JFrame(), true);
-                    er.titulo.setText("OOPS...");
-                    er.msj.setText("OCURRIÓ UN ERROR AL REGISTRAR");
-                    er.msj1.setText("");
+                    er.titulo.setText("Error al ingresar los datos...");
+                    er.msj.setText("ERROR AL INGRESAR LOS DATOS");
+                    er.msj1.setText(e.getMessage());
+                    er.setVisible(true);
+                } catch (NumberFormatException e) {
+                    ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                    er.titulo.setText("Error al ingresar los datos...");
+                    er.msj.setText("Por favor, verificar:");
+                    er.msj1.setText("Valores numéricos válidos en los campos correspondientes.");
                     er.setVisible(true);
                 }
             }
+
+        } else if (this.MBRegistrar.getText().equals("MODIFICAR")) {
+
+            
+            
+            
         }
+
+
     }//GEN-LAST:event_MBRegistrarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

@@ -244,8 +244,8 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         ModalUsuario mp = new ModalUsuario(new JFrame(), true);
-        mp.titulo.setText("REGISTRAR");
-        mp.MBRegistrar.setText("REGISTRAR");
+        mp.titulo.setText("MODIFICAR");
+        mp.MBRegistrar.setText("MODIFICAR");
         mp.setVisible(true);
     }//GEN-LAST:event_BtnUsuActionPerformed
 
@@ -280,6 +280,7 @@ public class Principal extends javax.swing.JFrame {
 
         ModalUsuario mu = new ModalUsuario(new JFrame(), true);
         mu.titulo.setText("REGISTRAR");
+        mu.MBRegistrar.setText("REGISTRAR");
         mu.setVisible(true);
 
 
