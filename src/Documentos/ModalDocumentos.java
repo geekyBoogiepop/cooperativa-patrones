@@ -4,17 +4,31 @@
  */
 package Documentos;
 
+import Conexion.ConexionBD;
+import static Trabajo.ModalTrabajo.DCFechaIngreso;
+import alertas.principal.ErrorAlert;
+import alertas.principal.SuccessAlert;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JFrame;
+
 /**
  *
  * @author criso
  */
 public class ModalDocumentos extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ModalDocumentos
-     */
-    public ModalDocumentos() {
+    static ConexionBD cc = new ConexionBD();
+    static Connection cn = cc.conexion();
+    static PreparedStatement ps;
+    private Integer codigoSocio;
+
+    public ModalDocumentos(Integer codigoSocio) {
         initComponents();
+        this.codigoSocio = codigoSocio;
     }
 
     /**
@@ -34,11 +48,13 @@ public class ModalDocumentos extends javax.swing.JFrame {
         MBLimpiar = new necesario.MaterialButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        txtNombre2 = new app.bolivia.swing.JCTextField();
+        txtPaisEmision = new app.bolivia.swing.JCTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        DCFechaIngreso = new rojeru_san.rsdate.RSDateChooser();
-        DCFechaIngreso1 = new rojeru_san.rsdate.RSDateChooser();
+        DCFechaCaducidad = new rojeru_san.rsdate.RSDateChooser();
+        DCFechaReferencia = new rojeru_san.rsdate.RSDateChooser();
+        txtTipoDocumento = new app.bolivia.swing.JCTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,28 +151,37 @@ public class ModalDocumentos extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel3.setText("Fecha Caducidad:");
-        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
 
-        txtNombre2.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre2.setPlaceholder("País Emisión");
-        jPanel5.add(txtNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 330, 40));
+        txtPaisEmision.setForeground(new java.awt.Color(58, 159, 171));
+        txtPaisEmision.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtPaisEmision.setPlaceholder("País Emisión");
+        jPanel5.add(txtPaisEmision, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 330, 40));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel4.setText("País Emisión:");
-        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, -1, -1));
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel12.setText("Fecha Referencia: ");
-        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
+        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
 
-        DCFechaIngreso.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        DCFechaIngreso.setPlaceholder("Fecha Caducidad");
-        jPanel5.add(DCFechaIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 330, 40));
+        DCFechaCaducidad.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        DCFechaCaducidad.setPlaceholder("Fecha Caducidad");
+        jPanel5.add(DCFechaCaducidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 330, 40));
 
-        DCFechaIngreso1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        DCFechaIngreso1.setPlaceholder("Fecha Referencia");
-        jPanel5.add(DCFechaIngreso1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 330, 40));
+        DCFechaReferencia.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        DCFechaReferencia.setPlaceholder("Fecha Referencia");
+        jPanel5.add(DCFechaReferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 330, 40));
+
+        txtTipoDocumento.setForeground(new java.awt.Color(58, 159, 171));
+        txtTipoDocumento.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtTipoDocumento.setPlaceholder("Tipo Documento");
+        jPanel5.add(txtTipoDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 330, 40));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel5.setText("Tipo Documento:");
+        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -174,7 +199,7 @@ public class ModalDocumentos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -187,6 +212,67 @@ public class ModalDocumentos extends javax.swing.JFrame {
     }//GEN-LAST:event_cerrarActionPerformed
 
     private void MBRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MBRegistrarActionPerformed
+        String _txtTipoDocumento = txtTipoDocumento.getText();
+
+        String _txtPaisEmision = txtPaisEmision.getText();
+
+        // Validaciones
+        if (_txtTipoDocumento.isEmpty() || DCFechaReferencia.getDatoFecha().toString().isEmpty() || DCFechaCaducidad.getDatoFecha().toString().isEmpty()
+                || _txtPaisEmision.isEmpty()) {
+            // Mostrar una alerta de error si algún campo está vacío
+            ErrorAlert er = new ErrorAlert(new JFrame(), true);
+            er.titulo.setText("Error al ingresar los datos...");
+            er.msj.setText("Por favor");
+            er.msj1.setText("Complete todos los campos.");
+            er.setVisible(true);
+        } else {
+            try {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date _DCFechaReferencia = DCFechaReferencia.getDatoFecha();
+                String fechaReferencia = dateFormat.format(_DCFechaReferencia);
+
+                Date _DCFechaCaducidad = DCFechaCaducidad.getDatoFecha();
+                String fechaCaducidad = dateFormat.format(_DCFechaCaducidad);
+
+                Integer tipoDocumento = Integer.valueOf(_txtTipoDocumento);
+                Integer paisEmision = Integer.valueOf(_txtPaisEmision);
+
+                String query = "INSERT INTO `documentos` (codigoSocio, tipoDocumento, fechaReferencia, fechaCaducidad, paisEmision) VALUES (?, ?, ?, ?, ?)";
+                ps = cn.prepareStatement(query);
+
+                ps.setInt(1, codigoSocio);
+                ps.setInt(2, tipoDocumento);
+                ps.setString(3, fechaReferencia);
+                ps.setString(4, fechaCaducidad);
+                ps.setInt(5, paisEmision);
+
+                ps.executeUpdate();
+
+                limpiarCampos();
+
+                SuccessAlert sa = new SuccessAlert(new JFrame(), true);
+                sa.titulo.setText("¡HECHO!");
+                sa.msj.setText("SE HA REGISTRADO");
+                sa.msj1.setText("LOS DATOS DEL DOCUMENTO!");
+                sa.setVisible(true);
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                er.titulo.setText("Error al ingresar los datos...");
+                er.msj.setText("ERROR AL INGRESAR LOS DATOS");
+                er.msj1.setText(e.getMessage());
+                er.setVisible(true);
+            } catch (NumberFormatException e) {
+                ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                er.titulo.setText("Error al ingresar los datos...");
+                er.msj.setText("Por favor, ingrese");
+                er.msj1.setText("valores numéricos válidos en los campos correspondientes.");
+                er.setVisible(true);
+            }
+
+        }
+
 
     }//GEN-LAST:event_MBRegistrarActionPerformed
 
@@ -228,24 +314,30 @@ public class ModalDocumentos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ModalDocumentos().setVisible(true);
+                new ModalDocumentos(1).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static rojeru_san.rsdate.RSDateChooser DCFechaIngreso;
-    public static rojeru_san.rsdate.RSDateChooser DCFechaIngreso1;
+    public static rojeru_san.rsdate.RSDateChooser DCFechaCaducidad;
+    public static rojeru_san.rsdate.RSDateChooser DCFechaReferencia;
     private necesario.MaterialButton MBLimpiar;
     public static necesario.MaterialButton MBRegistrar;
     private principal.MaterialButton cerrar;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     public static javax.swing.JLabel titulo;
-    public static app.bolivia.swing.JCTextField txtNombre2;
+    public static app.bolivia.swing.JCTextField txtPaisEmision;
+    public static app.bolivia.swing.JCTextField txtTipoDocumento;
     // End of variables declaration//GEN-END:variables
+    private void limpiarCampos() {
+
+    }
+
 }
