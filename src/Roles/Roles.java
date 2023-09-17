@@ -5,12 +5,20 @@
  */
 package Roles;
 
+import Conexion.ConexionBD;
 import alertas.principal.AWTUtilities;
 import alertas.principal.ErrorAlert;
 import alertas.principal.WarningAlertCerrar;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,14 +29,17 @@ public class Roles extends javax.swing.JFrame {
     Timer timer = null;
     TimerTask task;
     int i = 32;
+    static ConexionBD cc = new ConexionBD();
+    static Connection cn = cc.conexion();
 
     /**
      * /**
      * Creates new form Roles
      */
-    public Roles() {
+    public Roles() throws SQLException {
         initComponents();
         this.setLocationRelativeTo(null);
+        ActualizarTabla();
     }
 
     private void Cerrar() {
@@ -40,7 +51,6 @@ public class Roles extends javax.swing.JFrame {
     private void Trasparencia(float trasp) {
         AWTUtilities.setOpacity(this, trasp);
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -263,6 +273,11 @@ public class Roles extends javax.swing.JFrame {
         mp.titulo.setText("REGISTRAR");
         mp.registrar.setText("REGISTRAR");
         mp.setVisible(true);
+        try {
+            ActualizarTabla();
+        } catch (SQLException ex) {
+            Logger.getLogger(Roles.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
@@ -280,6 +295,16 @@ public class Roles extends javax.swing.JFrame {
                 er.msj1.setText("REGISTRO");
                 er.setVisible(true);
             } else {
+                try {
+                    ModalRol mod = new ModalRol(new JFrame(), true, ObtenerDatos(2), Integer.parseInt(ObtenerDatos(1)));
+                    mod.titulo.setText("GUARDAR");
+                    mod.registrar.setText("GUARDAR");
+                    mod.setVisible(true);
+                    try {
+                        ActualizarTabla();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Roles.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
 //                int fila = this.tabla.getSelectedRow();
 //
@@ -292,6 +317,9 @@ public class Roles extends javax.swing.JFrame {
 //                //                mp.titulo.setText("MODIFICAR");
 //                //                mp.registrar.setText("GUARDAR");
 //                //                mp.setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Roles.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }//GEN-LAST:event_modificarActionPerformed
@@ -326,7 +354,11 @@ public class Roles extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Roles().setVisible(true);
+                try {
+                    new Roles().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Roles.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -345,4 +377,36 @@ public class Roles extends javax.swing.JFrame {
     private principal.MaterialButton salir;
     public static javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
+    private void ActualizarTabla() throws SQLException {
+        String sql = "SELECT * FROM Rol";
+        Statement st = cn.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("CODIGO");
+        modelo.addColumn("NOMBRE");
+
+        while (rs.next()) {
+            modelo.addRow(new Object[]{rs.getInt("codigoRol"), rs.getString("nombreRol")});
+        }
+        tabla.setModel(modelo);
+
+    }
+
+    private String ObtenerDatos(int opc) throws SQLException {
+        int i;
+        i = tabla.getSelectedRow();
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        String codigo = String.valueOf(modelo.getValueAt(i, 0));
+        String sql = "SELECT * FROM Rol where codigoRol = " + codigo;
+        Statement st = cn.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+            if (opc == 1) {
+                return String.valueOf(rs.getInt("codigoRol"));
+            } else {
+                return rs.getString("nombreRol");
+            }
+        }
+        return "Error";
+    }
 }

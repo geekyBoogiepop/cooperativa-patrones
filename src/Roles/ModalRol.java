@@ -23,6 +23,8 @@ public class ModalRol extends javax.swing.JDialog {
     Timer timer = null;
     TimerTask task;
     int i = 32;
+    String NombreRol;
+    int CodigoRol;
     /**
      * Creates new form ModalRol
      */
@@ -37,6 +39,20 @@ public class ModalRol extends javax.swing.JDialog {
        
         
     }
+    
+    public ModalRol(java.awt.Frame parent, boolean modal, String nmb, int cod) {
+        super(parent, modal);
+        initComponents();
+        AWTUtilities.setOpaque(this, false);
+        this.id.setVisible(false);
+        this.nombreRol.setVisible(false);
+        Ubicar(0);
+        this.txtRol.requestFocus();
+        this.NombreRol = nmb;
+        this.CodigoRol = cod;
+        txtRol.setText(nmb);
+    }
+    
     public void convertiraMayusculasEnJtextfield(javax.swing.JTextField jTextfieldS){
         String cadena = (jTextfieldS.getText()).toUpperCase();
         jTextfieldS.setText(cadena);
@@ -267,7 +283,14 @@ public class ModalRol extends javax.swing.JDialog {
 
                 if (this.registrar.getText().equals("GUARDAR")) {
 
-                    if (Opciones.verificaRol(this.txtRol.getText())
+                    if (NombreRol.equals(this.txtRol.getText().toString())){
+                        ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                        er.titulo.setText("OOPS...");
+                        er.msj.setText("EL NOMBRE DEL ROL ");
+                        er.msj1.setText("NO SE HA MODIFICADO");
+                        er.setVisible(true);
+                    }
+                    else if (Opciones.verificaRol(this.txtRol.getText())
                         && !this.txtRol.getText().equals(this.nombreRol.getText())) {
                         ErrorAlert er = new ErrorAlert(new JFrame(), true);
                         er.titulo.setText("OOPS...");
@@ -278,7 +301,7 @@ public class ModalRol extends javax.swing.JDialog {
                         Sentencias s = new Sentencias();
 
                         s.setNombreRol(this.txtRol.getText());
-                        s.setCodigoRol(Integer.parseInt(this.id.getText()));
+                        s.setCodigoRol(this.CodigoRol);
 
                         int opcion = Opciones.actualizar(s);
                         if (opcion != 0) {
@@ -288,6 +311,7 @@ public class ModalRol extends javax.swing.JDialog {
                             sa.msj.setText("SE HAN GUARDADO LOS CAMBIOS");
                             sa.msj1.setText("");
                             sa.setVisible(true);
+                            NombreRol = txtRol.getText().toString();
                         }
                     }
                 } else {

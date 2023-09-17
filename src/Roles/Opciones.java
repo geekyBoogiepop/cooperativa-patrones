@@ -47,8 +47,8 @@ public class Opciones {
         String sql = Sentencias.ACTUALIZAR;
         try {
             ps = cn.prepareStatement(sql);
-            ps.setInt(1, uc.getCodigoRol());
-            ps.setString(2, uc.getNombreRol());
+            ps.setString(1, uc.getNombreRol());
+            ps.setInt(2, uc.getCodigoRol());
            
             rsu = ps.executeUpdate();
         } catch (SQLException ex) {

@@ -20,6 +20,9 @@ import alertas.principal.ErrorAlert;
 import alertas.principal.FadeEffect;
 import alertas.principal.WarningAlertCerrar;
 import alertas.principal.WarningAlertSalir;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -284,10 +287,13 @@ public class Principal extends javax.swing.JFrame {
 
     private void BtnUsu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUsu1ActionPerformed
         
-        Roles mr = new Roles();
-
-        mr.setVisible(true);
-        
+        Roles mr;
+        try {
+            mr = new Roles();
+            mr.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }        
     }//GEN-LAST:event_BtnUsu1ActionPerformed
 
     /**
