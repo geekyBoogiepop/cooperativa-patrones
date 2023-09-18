@@ -28,15 +28,10 @@ public class Opciones {
         String sql = Sentencias.REGISTRAR;
         try{
             ps = cn.prepareStatement(sql);
-            System.out.println(s.getCodigoSocio());
             ps.setInt(1, s.getCodigoSocio());
-            System.out.println(s.getCodigoSocio());
             ps.setString(2, String.valueOf(s.getTipoTel()));
-            System.out.println(s.getTipoTel());
             ps.setString(3, s.getNumero());
-            System.out.println(s.getNumero());
             ps.setString(4, String.valueOf(s.getExtension()));
-            System.out.println(s.getExtension());
             rsu = ps.executeUpdate();
         }
         catch(SQLException ex){
@@ -69,7 +64,7 @@ public class Opciones {
         String E = "";
         
         try {
-            String sql = "SELECT * FROM `teléfono` WHERE numero = '" + numero + "' and " + CS;
+            String sql = "SELECT * FROM `teléfono` WHERE numero = '" + numero + "' and codigoSocio= " + CS;
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while(rs.next()){
