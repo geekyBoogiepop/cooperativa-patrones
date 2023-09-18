@@ -5,6 +5,12 @@
 package Socios;
 
 import Conexion.ConexionBD;
+import Direccion.ModalDireccion;
+import Documentos.ModalDocumentos;
+import Natural.ModalNatural;
+import Referencia.ModalReferencia;
+import Telefono.ModalTelefono;
+import Trabajo.ModalTrabajo;
 import alertas.principal.ErrorAlert;
 import alertas.principal.SuccessAlert;
 import java.sql.Connection;
@@ -70,6 +76,13 @@ public class ModalSocio extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         txtTipo = new app.bolivia.swing.JCTextField();
+        BtnDocumentos = new necesario.RSMaterialButtonCircle();
+        jLabel13 = new javax.swing.JLabel();
+        BtnNatural = new necesario.RSMaterialButtonCircle();
+        BtnDireccion = new necesario.RSMaterialButtonCircle();
+        BtnTelefono = new necesario.RSMaterialButtonCircle();
+        BtnReferencia = new necesario.RSMaterialButtonCircle();
+        BtnTrabajo = new necesario.RSMaterialButtonCircle();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(251, 255, 255));
@@ -256,13 +269,65 @@ public class ModalSocio extends javax.swing.JFrame {
         jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 630, -1, 20));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel12.setText("Tipo:");
-        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, -1, -1));
+        jLabel12.setText("AÑADIR INFORMACIÓN");
+        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, -1, 20));
 
         txtTipo.setForeground(new java.awt.Color(58, 159, 171));
         txtTipo.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtTipo.setPlaceholder("Tipo");
         jPanel5.add(txtTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 330, 40));
+
+        BtnDocumentos.setText("DOCUMENTOS");
+        BtnDocumentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDocumentosActionPerformed(evt);
+            }
+        });
+        jPanel5.add(BtnDocumentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 470, 200, 60));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel13.setText("Tipo:");
+        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, -1, -1));
+
+        BtnNatural.setText("NATURAL");
+        BtnNatural.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnNaturalActionPerformed(evt);
+            }
+        });
+        jPanel5.add(BtnNatural, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 120, 200, 60));
+
+        BtnDireccion.setText("DIRECCIÓN");
+        BtnDireccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDireccionActionPerformed(evt);
+            }
+        });
+        jPanel5.add(BtnDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 190, 200, 60));
+
+        BtnTelefono.setText("TELÉFONO");
+        BtnTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTelefonoActionPerformed(evt);
+            }
+        });
+        jPanel5.add(BtnTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 260, 200, 60));
+
+        BtnReferencia.setText("REFERENCIA");
+        BtnReferencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnReferenciaActionPerformed(evt);
+            }
+        });
+        jPanel5.add(BtnReferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 330, 200, 60));
+
+        BtnTrabajo.setText("TRABAJO");
+        BtnTrabajo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTrabajoActionPerformed(evt);
+            }
+        });
+        jPanel5.add(BtnTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 400, 200, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -270,7 +335,7 @@ public class ModalSocio extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,7 +405,7 @@ public class ModalSocio extends javax.swing.JFrame {
 
                 ps.executeUpdate();
 
-                limpiarCampos();
+                
                 SuccessAlert sa = new SuccessAlert(new JFrame(), true);
                 sa.titulo.setText("¡HECHO!");
                 sa.msj.setText("SE HA REGISTRADO UN");
@@ -373,6 +438,42 @@ public class ModalSocio extends javax.swing.JFrame {
     private void MBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MBLimpiarActionPerformed
         limpiarCampos();
     }//GEN-LAST:event_MBLimpiarActionPerformed
+
+    private void BtnNaturalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNaturalActionPerformed
+        ModalNatural mn = new ModalNatural(1);
+        mn.setLocationRelativeTo(null);
+        mn.setVisible(true);
+    }//GEN-LAST:event_BtnNaturalActionPerformed
+
+    private void BtnDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDireccionActionPerformed
+        ModalDireccion md = new ModalDireccion(new JFrame(), true, 1);
+        md.setLocationRelativeTo(null);
+        md.setVisible(true);
+    }//GEN-LAST:event_BtnDireccionActionPerformed
+
+    private void BtnTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTelefonoActionPerformed
+        ModalTelefono md = new ModalTelefono(new JFrame(), true, 1);
+        md.setLocationRelativeTo(null);
+        md.setVisible(true);
+    }//GEN-LAST:event_BtnTelefonoActionPerformed
+
+    private void BtnReferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReferenciaActionPerformed
+        ModalReferencia md = new ModalReferencia(1);
+        md.setLocationRelativeTo(null);
+        md.setVisible(true);
+    }//GEN-LAST:event_BtnReferenciaActionPerformed
+
+    private void BtnTrabajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTrabajoActionPerformed
+        ModalTrabajo md = new ModalTrabajo(1);
+        md.setLocationRelativeTo(null);
+        md.setVisible(true);
+    }//GEN-LAST:event_BtnTrabajoActionPerformed
+
+    private void BtnDocumentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDocumentosActionPerformed
+        ModalDocumentos md = new ModalDocumentos(1);
+        md.setLocationRelativeTo(null);
+        md.setVisible(true);
+    }//GEN-LAST:event_BtnDocumentosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -410,6 +511,12 @@ public class ModalSocio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private necesario.RSMaterialButtonCircle BtnDireccion;
+    private necesario.RSMaterialButtonCircle BtnDocumentos;
+    private necesario.RSMaterialButtonCircle BtnNatural;
+    private necesario.RSMaterialButtonCircle BtnReferencia;
+    private necesario.RSMaterialButtonCircle BtnTelefono;
+    private necesario.RSMaterialButtonCircle BtnTrabajo;
     public static rojeru_san.rsdate.RSDateChooser DCFechaIngreso;
     private necesario.MaterialButton MBLimpiar;
     public static necesario.MaterialButton MBRegistrar;
@@ -417,6 +524,7 @@ public class ModalSocio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

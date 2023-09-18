@@ -5,8 +5,10 @@
  */
 package Principal;
 
+import Cuenta.ModalCuenta;
 import Usuarios.ModalUsuario;
 import Roles.*;
+import Socios.ModalSocio;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -58,10 +60,12 @@ public class Principal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         rSPanelImage1 = new rojeru_san.rspanel.RSPanelImage();
         JPizquierdo = new javax.swing.JPanel();
-        BtnRol = new necesario.RSMaterialButtonCircle();
         BtnUsu = new necesario.RSMaterialButtonCircle();
         BtnUsu1 = new necesario.RSMaterialButtonCircle();
         BtnUsuario = new necesario.RSMaterialButtonCircle();
+        BtnRol1 = new necesario.RSMaterialButtonCircle();
+        BtnsSocio1 = new necesario.RSMaterialButtonCircle();
+        BtnsSocio = new necesario.RSMaterialButtonCircle();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(32767, 32767));
@@ -140,13 +144,6 @@ public class Principal extends javax.swing.JFrame {
 
         JPizquierdo.setBackground(new java.awt.Color(255, 255, 255));
 
-        BtnRol.setText("CREAR ROLES");
-        BtnRol.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnRolActionPerformed(evt);
-            }
-        });
-
         BtnUsu.setText("MODIFICAR USUARIO");
         BtnUsu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,31 +165,61 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        BtnRol1.setText("CREAR ROLES");
+        BtnRol1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRol1ActionPerformed(evt);
+            }
+        });
+
+        BtnsSocio1.setText("CREAR CUENTA");
+        BtnsSocio1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnsSocio1ActionPerformed(evt);
+            }
+        });
+
+        BtnsSocio.setText("CREAR SOCIOS");
+        BtnsSocio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnsSocioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout JPizquierdoLayout = new javax.swing.GroupLayout(JPizquierdo);
         JPizquierdo.setLayout(JPizquierdoLayout);
         JPizquierdoLayout.setHorizontalGroup(
             JPizquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPizquierdoLayout.createSequentialGroup()
-                .addContainerGap(70, Short.MAX_VALUE)
+            .addGroup(JPizquierdoLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(JPizquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnUsu1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnRol, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70))
+                    .addGroup(JPizquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(BtnUsu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnUsu1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BtnUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtnRol1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JPizquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BtnsSocio1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnsSocio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         JPizquierdoLayout.setVerticalGroup(
             JPizquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPizquierdoLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(BtnRol, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BtnUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BtnUsu1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BtnUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(60, 60, 60)
+                .addGroup(JPizquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnRol1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnsSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JPizquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnsSocio1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtnUsu1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtnUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -201,23 +228,23 @@ public class Principal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1040, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(rSPanelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(JPizquierdo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
                 .addComponent(jLabel1)
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rSPanelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JPizquierdo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -234,7 +261,7 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 54, Short.MAX_VALUE))
+                .addGap(0, 58, Short.MAX_VALUE))
         );
 
         pack();
@@ -249,14 +276,12 @@ public class Principal extends javax.swing.JFrame {
         mp.setVisible(true);
     }//GEN-LAST:event_BtnUsuActionPerformed
 
-    private void BtnRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRolActionPerformed
+    private void BtnsSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnsSocioActionPerformed
 
-        ModalRol mp = new ModalRol(new JFrame(), true);
-        mp.titulo.setText("REGISTRAR");
-        mp.registrar.setText("REGISTRAR");
-        mp.setLocationRelativeTo(null);
-        mp.setVisible(true);
-    }//GEN-LAST:event_BtnRolActionPerformed
+        ModalSocio ms = new ModalSocio();
+        ms.setLocationRelativeTo(null);
+        ms.setVisible(true);
+    }//GEN-LAST:event_BtnsSocioActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         WarningAlertCerrar wa = new WarningAlertCerrar(this, true);
@@ -297,6 +322,20 @@ public class Principal extends javax.swing.JFrame {
         }        
     }//GEN-LAST:event_BtnUsu1ActionPerformed
 
+    private void BtnRol1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRol1ActionPerformed
+        ModalRol mr = new ModalRol(new JFrame(), true);
+        mr.titulo.setText("REGISTRAR");
+        mr.registrar.setText("REGISTRAR");
+        mr.setLocationRelativeTo(null);
+        mr.setVisible(true);
+    }//GEN-LAST:event_BtnRol1ActionPerformed
+
+    private void BtnsSocio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnsSocio1ActionPerformed
+        ModalCuenta md = new ModalCuenta(1);
+        md.setLocationRelativeTo(null);
+        md.setVisible(true);
+    }//GEN-LAST:event_BtnsSocio1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -334,10 +373,12 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private necesario.RSMaterialButtonCircle BtnRol;
+    private necesario.RSMaterialButtonCircle BtnRol1;
     private necesario.RSMaterialButtonCircle BtnUsu;
     private necesario.RSMaterialButtonCircle BtnUsu1;
     private necesario.RSMaterialButtonCircle BtnUsuario;
+    private necesario.RSMaterialButtonCircle BtnsSocio;
+    private necesario.RSMaterialButtonCircle BtnsSocio1;
     private javax.swing.JPanel JPizquierdo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
