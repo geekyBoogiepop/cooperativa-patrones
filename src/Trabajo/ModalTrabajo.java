@@ -281,7 +281,7 @@ public class ModalTrabajo extends javax.swing.JFrame {
         // Validaciones
         if (_txtNombreEmpresa.isEmpty() || _txtTipoEmpresa.isEmpty() || _txtDir.isEmpty()
                 || _txtTel.isEmpty() || _txtFuncion.isEmpty() || _txtTipoContrato.isEmpty()
-                || _txtCargo.isEmpty() || DCFechaIngreso.getDatoFecha().toString().isEmpty() || DCFechaSalida.getDatoFecha().toString().isEmpty()) {
+                || _txtCargo.isEmpty() || DCFechaIngreso.getDatoFecha() == null || DCFechaSalida.getDatoFecha() == null) {
             // Mostrar una alerta de error si algún campo está vacío
             ErrorAlert er = new ErrorAlert(new JFrame(), true);
             er.titulo.setText("Error al ingresar los datos...");
