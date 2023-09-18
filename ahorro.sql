@@ -547,6 +547,13 @@ ALTER TABLE `transaccion`
 ALTER TABLE `usuarioxrol`
   MODIFY `Codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
+
+--
+-- AUTO_INCREMENT de la tabla `movimiento`
+--
+ALTER TABLE `movimiento`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Restricciones para tablas volcadas
 --

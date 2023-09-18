@@ -29,7 +29,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel3" max="32767" attributes="0"/>
           <Component id="jPanel4" max="32767" attributes="0"/>
-          <Component id="jPanel5" alignment="0" pref="645" max="32767" attributes="0"/>
+          <Component id="jPanel5" alignment="0" pref="847" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -106,7 +106,7 @@
             <Property name="text" type="java.lang.String" value="X"/>
             <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt; &lt;head&gt; &lt;style&gt; #contenedor{background:white;color:black; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} &lt;/style&gt; &lt;/head&gt; &lt;body&gt; &lt;h4 id=&quot;contenedor&quot;&gt;Cerrar&lt;/h4&gt; &lt;/body&gt; &lt;/html&gt;"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Cursor Por defecto"/>
+              <Color id="Default Cursor"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Medium" size="20" style="1"/>
@@ -169,7 +169,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="REGISTRAR"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Cursor Por defecto"/>
+              <Color id="Default Cursor"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Medium" size="14" style="1"/>
@@ -541,11 +541,11 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="16" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Tipo:"/>
+            <Property name="text" type="java.lang.String" value="A&#xd1;ADIR INFORMACI&#xd3;N"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="180" y="30" width="-1" height="-1"/>
+              <AbsoluteConstraints x="600" y="80" width="-1" height="20"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -565,6 +565,97 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="240" y="20" width="330" height="40"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="necesario.RSMaterialButtonCircle" name="BtnDocumentos">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="DOCUMENTOS"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnDocumentosActionPerformed"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="600" y="470" width="200" height="60"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel13">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="16" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Tipo:"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="180" y="30" width="-1" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="necesario.RSMaterialButtonCircle" name="BtnNatural">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="NATURAL"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnNaturalActionPerformed"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="600" y="120" width="200" height="60"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="necesario.RSMaterialButtonCircle" name="BtnDireccion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="DIRECCI&#xd3;N"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnDireccionActionPerformed"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="600" y="190" width="200" height="60"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="necesario.RSMaterialButtonCircle" name="BtnTelefono">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="TEL&#xc9;FONO"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnTelefonoActionPerformed"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="600" y="260" width="200" height="60"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="necesario.RSMaterialButtonCircle" name="BtnReferencia">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="REFERENCIA"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnReferenciaActionPerformed"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="600" y="330" width="200" height="60"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="necesario.RSMaterialButtonCircle" name="BtnTrabajo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="TRABAJO"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnTrabajoActionPerformed"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="600" y="400" width="200" height="60"/>
             </Constraint>
           </Constraints>
         </Component>

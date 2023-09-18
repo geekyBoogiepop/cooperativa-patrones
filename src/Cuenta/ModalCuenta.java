@@ -5,6 +5,8 @@
 package Cuenta;
 
 import Conexion.ConexionBD;
+import Movimiento.ModalMovimiento;
+import Rubros.ModalRubros;
 import static Trabajo.ModalTrabajo.DCFechaIngreso;
 import static Trabajo.ModalTrabajo.DCFechaSalida;
 import alertas.principal.ErrorAlert;
@@ -68,6 +70,9 @@ public class ModalCuenta extends javax.swing.JFrame {
         DCFechaUltimoMovimiento = new rojeru_san.rsdate.RSDateChooser();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        BtnRubros = new necesario.RSMaterialButtonCircle();
+        BtnMovimientos = new necesario.RSMaterialButtonCircle();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -98,7 +103,7 @@ public class ModalCuenta extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 293, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 511, Short.MAX_VALUE)
                 .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -166,85 +171,105 @@ public class ModalCuenta extends javax.swing.JFrame {
         txtCuentaOficial.setForeground(new java.awt.Color(58, 159, 171));
         txtCuentaOficial.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtCuentaOficial.setPlaceholder("Cuenta Oficial");
-        jPanel5.add(txtCuentaOficial, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 330, 40));
+        jPanel5.add(txtCuentaOficial, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 330, 40));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel3.setText("Cuenta Oficial:");
-        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, -1, -1));
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
 
         txtEstado.setForeground(new java.awt.Color(58, 159, 171));
         txtEstado.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtEstado.setPlaceholder("Estado");
-        jPanel5.add(txtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 330, 40));
+        jPanel5.add(txtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 330, 40));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel4.setText("Estado:");
-        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, -1, -1));
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
 
         txtSaldoEfectivo.setForeground(new java.awt.Color(58, 159, 171));
         txtSaldoEfectivo.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtSaldoEfectivo.setPlaceholder("Saldo Efectivo");
-        jPanel5.add(txtSaldoEfectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 330, 40));
+        jPanel5.add(txtSaldoEfectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 330, 40));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel5.setText("Saldo Efectivo:");
-        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, -1, -1));
+        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, -1));
 
         txtSaldoCheque24.setForeground(new java.awt.Color(58, 159, 171));
         txtSaldoCheque24.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtSaldoCheque24.setPlaceholder("Saldo Cheque 24");
-        jPanel5.add(txtSaldoCheque24, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 330, 40));
+        jPanel5.add(txtSaldoCheque24, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 330, 40));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel6.setText("Saldo Cheque 24:");
-        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, -1, 20));
+        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, 20));
 
         DCFechaApertura.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         DCFechaApertura.setPlaceholder("Fecha Apertura");
-        jPanel5.add(DCFechaApertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 330, 40));
+        jPanel5.add(DCFechaApertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 330, 40));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel12.setText("Fecha Apertura: ");
-        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, -1));
+        jLabel12.setText("AÑADIR INFORMACIÓN");
+        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, -1, -1));
 
         txtSaldoCheque48.setForeground(new java.awt.Color(58, 159, 171));
         txtSaldoCheque48.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtSaldoCheque48.setPlaceholder("Saldo Cheque 48");
-        jPanel5.add(txtSaldoCheque48, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 330, 40));
+        jPanel5.add(txtSaldoCheque48, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 330, 40));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel7.setText("Saldo Cheque 48:");
-        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, -1, 20));
+        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, 20));
 
         txtSaldoCheque.setForeground(new java.awt.Color(58, 159, 171));
         txtSaldoCheque.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtSaldoCheque.setPlaceholder("Saldo Cheque");
-        jPanel5.add(txtSaldoCheque, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 330, 40));
+        jPanel5.add(txtSaldoCheque, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 330, 40));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel8.setText("Saldo Cheque:");
-        jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, -1, 20));
+        jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, -1, 20));
 
         txtSaldoLibreta.setForeground(new java.awt.Color(58, 159, 171));
         txtSaldoLibreta.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtSaldoLibreta.setPlaceholder("Saldo Libreta");
-        jPanel5.add(txtSaldoLibreta, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 440, 330, 40));
+        jPanel5.add(txtSaldoLibreta, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 440, 330, 40));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel9.setText("Saldo Libreta:");
-        jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 450, -1, 20));
+        jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 450, -1, 20));
 
         DCFechaUltimoMovimiento.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         DCFechaUltimoMovimiento.setPlaceholder("Fecha Último Movimiento");
-        jPanel5.add(DCFechaUltimoMovimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 500, 330, 40));
+        jPanel5.add(DCFechaUltimoMovimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 500, 330, 40));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel13.setText("Movimiento:");
-        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 520, -1, -1));
+        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 520, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel14.setText("Fecha Último ");
-        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 500, -1, -1));
+        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 500, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel15.setText("Fecha Apertura: ");
+        jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
+
+        BtnRubros.setText("RUBROS");
+        BtnRubros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRubrosActionPerformed(evt);
+            }
+        });
+        jPanel5.add(BtnRubros, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, 200, 60));
+
+        BtnMovimientos.setText("MOVIMIENTOS");
+        BtnMovimientos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMovimientosActionPerformed(evt);
+            }
+        });
+        jPanel5.add(BtnMovimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 200, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -254,7 +279,7 @@ public class ModalCuenta extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 851, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -374,6 +399,18 @@ public class ModalCuenta extends javax.swing.JFrame {
 
     }//GEN-LAST:event_MBLimpiarActionPerformed
 
+    private void BtnRubrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRubrosActionPerformed
+        ModalRubros mn = new ModalRubros();
+        mn.setLocationRelativeTo(null);
+        mn.setVisible(true);
+    }//GEN-LAST:event_BtnRubrosActionPerformed
+
+    private void BtnMovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMovimientosActionPerformed
+        ModalMovimiento mn = new ModalMovimiento(1,1);
+        mn.setLocationRelativeTo(null);
+        mn.setVisible(true);
+    }//GEN-LAST:event_BtnMovimientosActionPerformed
+
     
     private void limpiarCampos() {
         txtCuentaOficial.setText("");
@@ -420,6 +457,8 @@ public class ModalCuenta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private necesario.RSMaterialButtonCircle BtnMovimientos;
+    private necesario.RSMaterialButtonCircle BtnRubros;
     public static rojeru_san.rsdate.RSDateChooser DCFechaApertura;
     public static rojeru_san.rsdate.RSDateChooser DCFechaUltimoMovimiento;
     private necesario.MaterialButton MBLimpiar;
@@ -428,6 +467,7 @@ public class ModalCuenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

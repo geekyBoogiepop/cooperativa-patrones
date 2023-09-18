@@ -2,36 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Movimiento;
-
-import Conexion.ConexionBD;
-import static Cuenta.ModalCuenta.DCFechaApertura;
-import static Cuenta.ModalCuenta.DCFechaUltimoMovimiento;
-import alertas.principal.ErrorAlert;
-import alertas.principal.SuccessAlert;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.swing.JFrame;
+package Rubros;
 
 /**
  *
  * @author criso
  */
-public class ModalMovimiento extends javax.swing.JFrame {
+public class ModalRubros extends javax.swing.JFrame {
 
-    static ConexionBD cc = new ConexionBD();
-    static Connection cn = cc.conexion();
-    static PreparedStatement ps;
-    private Integer codigoSocio;
-    private Integer cuentaid;
-
-    public ModalMovimiento(Integer codigoSocio, Integer cuentaid) {
+    /**
+     * Creates new form ModalRubros
+     */
+    public ModalRubros() {
         initComponents();
-        this.codigoSocio = codigoSocio;
-        this.cuentaid = cuentaid;
     }
 
     /**
@@ -50,17 +33,11 @@ public class ModalMovimiento extends javax.swing.JFrame {
         MBRegistrar = new necesario.MaterialButton();
         MBLimpiar = new necesario.MaterialButton();
         jPanel5 = new javax.swing.JPanel();
-        txtTipo = new app.bolivia.swing.JCTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtCotizacion = new app.bolivia.swing.JCTextField();
+        txtCuentaOficial = new app.bolivia.swing.JCTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        txtValor = new app.bolivia.swing.JCTextField();
-        DCFecha = new rojeru_san.rsdate.RSDateChooser();
-        Fecha = new javax.swing.JLabel();
-        txtCodigoS = new app.bolivia.swing.JCTextField();
+        txtCuentaOficial2 = new app.bolivia.swing.JCTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtCodigoO = new app.bolivia.swing.JCTextField();
+        txtCuentaOficial3 = new app.bolivia.swing.JCTextField();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,7 +49,7 @@ public class ModalMovimiento extends javax.swing.JFrame {
         titulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         titulo.setForeground(new java.awt.Color(255, 255, 255));
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo.setText("MOVIMIENTO");
+        titulo.setText("RUBROS");
 
         cerrar.setBackground(new java.awt.Color(251, 255, 255));
         cerrar.setForeground(new java.awt.Color(58, 159, 171));
@@ -91,8 +68,9 @@ public class ModalMovimiento extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 293, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -138,7 +116,7 @@ public class ModalMovimiento extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(77, 77, 77)
                 .addComponent(MBRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
                 .addComponent(MBLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(96, 96, 96))
         );
@@ -157,68 +135,42 @@ public class ModalMovimiento extends javax.swing.JFrame {
         jPanel5.setBorder(dropShadowBorder1);
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtTipo.setForeground(new java.awt.Color(58, 159, 171));
-        txtTipo.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtTipo.setPlaceholder("Tipo");
-        jPanel5.add(txtTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 330, 40));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel3.setText("Tipo:");
-        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, -1));
-
-        txtCotizacion.setForeground(new java.awt.Color(58, 159, 171));
-        txtCotizacion.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtCotizacion.setPlaceholder("Cotización");
-        jPanel5.add(txtCotizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 330, 40));
+        txtCuentaOficial.setForeground(new java.awt.Color(58, 159, 171));
+        txtCuentaOficial.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtCuentaOficial.setPlaceholder("Descripción");
+        jPanel5.add(txtCuentaOficial, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 330, 40));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel4.setText("Cotización:");
-        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, -1, -1));
+        jLabel4.setText("Descripción:");
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel12.setText("Valor:");
-        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, -1, -1));
-
-        txtValor.setForeground(new java.awt.Color(58, 159, 171));
-        txtValor.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtValor.setPlaceholder("Valor");
-        jPanel5.add(txtValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 330, 40));
-
-        DCFecha.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        DCFecha.setPlaceholder("Fecha");
-        jPanel5.add(DCFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 330, 40));
-
-        Fecha.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        Fecha.setText("Fecha:");
-        jPanel5.add(Fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, -1, -1));
-
-        txtCodigoS.setForeground(new java.awt.Color(58, 159, 171));
-        txtCodigoS.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtCodigoS.setPlaceholder("Código S");
-        jPanel5.add(txtCodigoS, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 330, 40));
+        txtCuentaOficial2.setForeground(new java.awt.Color(58, 159, 171));
+        txtCuentaOficial2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtCuentaOficial2.setPlaceholder("Mnemonico");
+        jPanel5.add(txtCuentaOficial2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 330, 40));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel5.setText("Código S:");
-        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, -1));
+        jLabel5.setText("Mnemonico:");
+        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, -1, -1));
 
-        txtCodigoO.setForeground(new java.awt.Color(58, 159, 171));
-        txtCodigoO.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtCodigoO.setPlaceholder("Código O");
-        jPanel5.add(txtCodigoO, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 330, 40));
+        txtCuentaOficial3.setForeground(new java.awt.Color(58, 159, 171));
+        txtCuentaOficial3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtCuentaOficial3.setPlaceholder("Tipo Movimiento");
+        jPanel5.add(txtCuentaOficial3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 330, 40));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel6.setText("Código O:");
-        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, -1, -1));
+        jLabel6.setText("Tipo Movimiento:");
+        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -226,8 +178,8 @@ public class ModalMovimiento extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -239,82 +191,7 @@ public class ModalMovimiento extends javax.swing.JFrame {
     }//GEN-LAST:event_cerrarActionPerformed
 
     private void MBRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MBRegistrarActionPerformed
-        String _txtValor = txtValor.getText();
-        String _txtTipo = txtTipo.getText();
-        String _txtCotizacion = txtCotizacion.getText();
-        String _txtCodigoS = txtCodigoS.getText();
-        String _txtCodigoO = txtCodigoO.getText();
-
-        // Validaciones
-        if (_txtValor.isEmpty() || _txtTipo.isEmpty() || _txtCotizacion.isEmpty()
-                || _txtCodigoS.isEmpty() || _txtCodigoO.isEmpty()
-                || DCFecha.getDatoFecha() == null) {
-            // Mostrar una alerta de error si algún campo está vacío
-            ErrorAlert er = new ErrorAlert(new JFrame(), true);
-            er.titulo.setText("Error al ingresar los datos...");
-            er.msj.setText("Por favor");
-            er.msj1.setText("Complete todos los campos.");
-            er.setVisible(true);
-        } else {
-            try {
-
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                Date _DCFecha = DCFecha.getDatoFecha();
-                String fecha = dateFormat.format(_DCFecha);
-
-                Integer codigoO = Integer.valueOf(_txtCodigoO);
-
-                Float valor = Float.valueOf(_txtValor);
-                Float cotizacion = Float.valueOf(_txtCotizacion);
-
-
-                String query = "INSERT INTO `movimiento` (codigoS, codigoO, codigoSocio, cuentaid, id, fecha, codigoMov, codigoProd, valor, tipo, cotizacion, codigoR, codigoTran, codigoMod, ) "
-                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                ps = cn.prepareStatement(query);
-
-                ps.setInt(1, 0);
-                ps.setInt(2, codigoO);
-                ps.setInt(3, codigoSocio);
-                ps.setInt(4, cuentaid);
-                ps.setInt(5, 1);
-                ps.setString(6, fecha);
-                ps.setInt(7, 0);
-                ps.setInt(8, 0);
-                ps.setFloat(9, valor);
-                ps.setString(10, _txtTipo);
-                ps.setFloat(11, cotizacion);
-                ps.setInt(12, 0);
-                ps.setInt(13, 0);
-                ps.setInt(14, 0);
-
-                ps.executeUpdate();
-
-                limpiarCampos();
-
-                SuccessAlert sa = new SuccessAlert(new JFrame(), true);
-                sa.titulo.setText("¡HECHO!");
-                sa.msj.setText("SE HA REGISTRADO");
-                sa.msj1.setText("LOS DATOS DEL TRABAJO!");
-                sa.setVisible(true);
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-                ErrorAlert er = new ErrorAlert(new JFrame(), true);
-                er.titulo.setText("Error al ingresar los datos...");
-                er.msj.setText("ERROR AL INGRESAR LOS DATOS");
-                er.msj1.setText(e.getMessage());
-                er.setVisible(true);
-            } catch (NumberFormatException e) {
-                ErrorAlert er = new ErrorAlert(new JFrame(), true);
-                er.titulo.setText("Error al ingresar los datos...");
-                er.msj.setText("Por favor, verificar:");
-                er.msj1.setText("Valores numéricos válidos en los campos correspondientes.");
-                er.setVisible(true);
-            }
-
-        }
-
-
+  
     }//GEN-LAST:event_MBRegistrarActionPerformed
 
     private void MBRegistrarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MBRegistrarKeyTyped
@@ -342,32 +219,28 @@ public class ModalMovimiento extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModalMovimiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModalRubros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModalMovimiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModalRubros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModalMovimiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModalRubros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModalMovimiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModalRubros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ModalMovimiento(1,1).setVisible(true);
+                new ModalRubros().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static rojeru_san.rsdate.RSDateChooser DCFecha;
-    private javax.swing.JLabel Fecha;
     private necesario.MaterialButton MBLimpiar;
     public static necesario.MaterialButton MBRegistrar;
     private principal.MaterialButton cerrar;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -375,18 +248,8 @@ public class ModalMovimiento extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     public static javax.swing.JLabel titulo;
-    public static app.bolivia.swing.JCTextField txtCodigoO;
-    public static app.bolivia.swing.JCTextField txtCodigoS;
-    public static app.bolivia.swing.JCTextField txtCotizacion;
-    public static app.bolivia.swing.JCTextField txtTipo;
-    public static app.bolivia.swing.JCTextField txtValor;
+    public static app.bolivia.swing.JCTextField txtCuentaOficial;
+    public static app.bolivia.swing.JCTextField txtCuentaOficial2;
+    public static app.bolivia.swing.JCTextField txtCuentaOficial3;
     // End of variables declaration//GEN-END:variables
-    private void limpiarCampos() {
-        txtValor.setText("");
-        txtTipo.setText("");
-        txtCotizacion.setText("");
-        txtCodigoS.setText("");
-        txtCodigoO.setText("");
-    }
-
 }
