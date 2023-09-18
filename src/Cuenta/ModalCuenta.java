@@ -4,18 +4,34 @@
  */
 package Cuenta;
 
+import Conexion.ConexionBD;
+import static Trabajo.ModalTrabajo.DCFechaIngreso;
+import static Trabajo.ModalTrabajo.DCFechaSalida;
+import alertas.principal.ErrorAlert;
+import alertas.principal.SuccessAlert;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JFrame;
+
 /**
  *
  * @author criso
  */
 public class ModalCuenta extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ModalCuenta
-     */
-    public ModalCuenta() {
+    static ConexionBD cc = new ConexionBD();
+    static Connection cn = cc.conexion();
+    static PreparedStatement ps;
+    private Integer codigoSocio;
+
+    public ModalCuenta(Integer codigoSocio) {
         initComponents();
+        this.codigoSocio = codigoSocio;
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,27 +49,28 @@ public class ModalCuenta extends javax.swing.JFrame {
         MBRegistrar = new necesario.MaterialButton();
         MBLimpiar = new necesario.MaterialButton();
         jPanel5 = new javax.swing.JPanel();
-        txtNombre1 = new app.bolivia.swing.JCTextField();
+        txtCuentaOficial = new app.bolivia.swing.JCTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtNombre2 = new app.bolivia.swing.JCTextField();
+        txtEstado = new app.bolivia.swing.JCTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtNombre3 = new app.bolivia.swing.JCTextField();
+        txtSaldoEfectivo = new app.bolivia.swing.JCTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtNombre4 = new app.bolivia.swing.JCTextField();
+        txtSaldoCheque24 = new app.bolivia.swing.JCTextField();
         jLabel6 = new javax.swing.JLabel();
-        DCFechaIngreso1 = new rojeru_san.rsdate.RSDateChooser();
+        DCFechaApertura = new rojeru_san.rsdate.RSDateChooser();
         jLabel12 = new javax.swing.JLabel();
-        txtNombre5 = new app.bolivia.swing.JCTextField();
+        txtSaldoCheque48 = new app.bolivia.swing.JCTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtNombre6 = new app.bolivia.swing.JCTextField();
+        txtSaldoCheque = new app.bolivia.swing.JCTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtNombre7 = new app.bolivia.swing.JCTextField();
+        txtSaldoLibreta = new app.bolivia.swing.JCTextField();
         jLabel9 = new javax.swing.JLabel();
-        DCFechaIngreso2 = new rojeru_san.rsdate.RSDateChooser();
+        DCFechaUltimoMovimiento = new rojeru_san.rsdate.RSDateChooser();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel3.setBackground(new java.awt.Color(58, 159, 171));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.gray, java.awt.Color.gray));
@@ -146,80 +163,80 @@ public class ModalCuenta extends javax.swing.JFrame {
         jPanel5.setBorder(dropShadowBorder1);
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtNombre1.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre1.setPlaceholder("Cuenta Oficial");
-        jPanel5.add(txtNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 330, 40));
+        txtCuentaOficial.setForeground(new java.awt.Color(58, 159, 171));
+        txtCuentaOficial.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtCuentaOficial.setPlaceholder("Cuenta Oficial");
+        jPanel5.add(txtCuentaOficial, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 330, 40));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel3.setText("Cuenta Oficial:");
         jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, -1, -1));
 
-        txtNombre2.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre2.setPlaceholder("Estado");
-        jPanel5.add(txtNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 330, 40));
+        txtEstado.setForeground(new java.awt.Color(58, 159, 171));
+        txtEstado.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtEstado.setPlaceholder("Estado");
+        jPanel5.add(txtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 330, 40));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel4.setText("Estado:");
         jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, -1, -1));
 
-        txtNombre3.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre3.setPlaceholder("Saldo Efectivo");
-        jPanel5.add(txtNombre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 330, 40));
+        txtSaldoEfectivo.setForeground(new java.awt.Color(58, 159, 171));
+        txtSaldoEfectivo.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtSaldoEfectivo.setPlaceholder("Saldo Efectivo");
+        jPanel5.add(txtSaldoEfectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 330, 40));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel5.setText("Saldo Efectivo:");
         jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, -1, -1));
 
-        txtNombre4.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre4.setPlaceholder("Saldo Cheque 24");
-        jPanel5.add(txtNombre4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 330, 40));
+        txtSaldoCheque24.setForeground(new java.awt.Color(58, 159, 171));
+        txtSaldoCheque24.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtSaldoCheque24.setPlaceholder("Saldo Cheque 24");
+        jPanel5.add(txtSaldoCheque24, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 330, 40));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel6.setText("Saldo Cheque 24:");
         jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, -1, 20));
 
-        DCFechaIngreso1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        DCFechaIngreso1.setPlaceholder("Fecha Apertura");
-        jPanel5.add(DCFechaIngreso1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 330, 40));
+        DCFechaApertura.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        DCFechaApertura.setPlaceholder("Fecha Apertura");
+        jPanel5.add(DCFechaApertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 330, 40));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel12.setText("Fecha Apertura: ");
         jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, -1));
 
-        txtNombre5.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre5.setPlaceholder("Saldo Cheque 48");
-        jPanel5.add(txtNombre5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 330, 40));
+        txtSaldoCheque48.setForeground(new java.awt.Color(58, 159, 171));
+        txtSaldoCheque48.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtSaldoCheque48.setPlaceholder("Saldo Cheque 48");
+        jPanel5.add(txtSaldoCheque48, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 330, 40));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel7.setText("Saldo Cheque 48:");
         jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, -1, 20));
 
-        txtNombre6.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre6.setPlaceholder("Saldo Cheque");
-        jPanel5.add(txtNombre6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 330, 40));
+        txtSaldoCheque.setForeground(new java.awt.Color(58, 159, 171));
+        txtSaldoCheque.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtSaldoCheque.setPlaceholder("Saldo Cheque");
+        jPanel5.add(txtSaldoCheque, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 330, 40));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel8.setText("Saldo Cheque:");
         jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, -1, 20));
 
-        txtNombre7.setForeground(new java.awt.Color(58, 159, 171));
-        txtNombre7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtNombre7.setPlaceholder("Saldo Libreta");
-        jPanel5.add(txtNombre7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 440, 330, 40));
+        txtSaldoLibreta.setForeground(new java.awt.Color(58, 159, 171));
+        txtSaldoLibreta.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtSaldoLibreta.setPlaceholder("Saldo Libreta");
+        jPanel5.add(txtSaldoLibreta, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 440, 330, 40));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel9.setText("Saldo Libreta:");
         jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 450, -1, 20));
 
-        DCFechaIngreso2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        DCFechaIngreso2.setPlaceholder("Fecha Último Movimiento");
-        jPanel5.add(DCFechaIngreso2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 500, 330, 40));
+        DCFechaUltimoMovimiento.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        DCFechaUltimoMovimiento.setPlaceholder("Fecha Último Movimiento");
+        jPanel5.add(DCFechaUltimoMovimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 500, 330, 40));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel13.setText("Movimiento:");
@@ -258,6 +275,94 @@ public class ModalCuenta extends javax.swing.JFrame {
     }//GEN-LAST:event_cerrarActionPerformed
 
     private void MBRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MBRegistrarActionPerformed
+        String _txtCuentaOficial = txtCuentaOficial.getText();
+        String _txtEstado = txtEstado.getText();
+        String _txtSaldoEfectivo = txtSaldoEfectivo.getText();
+        String _txtSaldoCheque24 = txtSaldoCheque24.getText();
+        String _txtSaldoCheque48 = txtSaldoCheque48.getText();
+        String _txtSaldoCheque = txtSaldoCheque.getText();
+        String _txtSaldoLibreta = txtSaldoLibreta.getText();
+
+        // Validaciones
+        if (_txtCuentaOficial.isEmpty() || _txtEstado.isEmpty() || _txtSaldoEfectivo.isEmpty()
+                || _txtSaldoCheque24.isEmpty() || _txtSaldoCheque48.isEmpty() || _txtSaldoCheque.isEmpty()
+                || _txtSaldoLibreta.isEmpty() || DCFechaApertura.getDatoFecha() == null
+                || DCFechaUltimoMovimiento.getDatoFecha() == null ){
+            // Mostrar una alerta de error si algún campo está vacío
+            ErrorAlert er = new ErrorAlert(new JFrame(), true);
+            er.titulo.setText("Error al ingresar los datos...");
+            er.msj.setText("Por favor");
+            er.msj1.setText("Complete todos los campos.");
+            er.setVisible(true);
+        } else {
+            try {
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date _DCFechaApertura = DCFechaApertura.getDatoFecha();
+                String fechaApertura = dateFormat.format(_DCFechaApertura);
+
+                Date _DCFechaUltimoMovimiento = DCFechaUltimoMovimiento.getDatoFecha();
+                String fechaUltimoMovimiento = dateFormat.format(_DCFechaUltimoMovimiento);
+                
+                
+                Integer cuentaOficial = Integer.valueOf(_txtCuentaOficial);
+                Integer estado = Integer.valueOf(_txtEstado);
+                
+                
+                Float saldoEfectivo = Float.valueOf(_txtSaldoEfectivo);
+                Float saldoCheque24 = Float.valueOf(_txtSaldoCheque24);
+                Float saldoCheque48 = Float.valueOf(_txtSaldoCheque48);
+                Float saldoCheque = Float.valueOf(_txtSaldoCheque);
+                Float saldoLibreta = Float.valueOf(_txtSaldoLibreta);
+
+                String query = "INSERT INTO `cuenta` (codigoSocio, codigoMod, codigoProd, codigoM, codigoS, codigoO, fechaApertura, oficialCuenta, estado, saldoEfectivo, saldoCheque24, saldoCheque48, saldoCheque, saldoLibreta, fechaUltimoMov) "
+                                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                ps = cn.prepareStatement(query);
+
+       
+                ps.setInt(1, codigoSocio);
+                ps.setInt(2, 0);
+                ps.setInt(3, 0);
+                ps.setInt(4, 0);
+                ps.setInt(5, 0);
+                ps.setInt(6, 0);
+                ps.setString(7, fechaApertura);
+                ps.setInt(8, cuentaOficial);
+                ps.setInt(9, estado );
+                ps.setFloat(10, saldoEfectivo);
+                ps.setFloat(11, saldoCheque24);
+                ps.setFloat(12, saldoCheque48);
+                ps.setFloat(13, saldoCheque);
+                ps.setFloat(14, saldoLibreta);
+                ps.setString(15, fechaUltimoMovimiento);
+                
+                ps.executeUpdate();
+
+                limpiarCampos();
+
+                SuccessAlert sa = new SuccessAlert(new JFrame(), true);
+                sa.titulo.setText("¡HECHO!");
+                sa.msj.setText("SE HA REGISTRADO");
+                sa.msj1.setText("LOS DATOS DEL TRABAJO!");
+                sa.setVisible(true);
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                er.titulo.setText("Error al ingresar los datos...");
+                er.msj.setText("ERROR AL INGRESAR LOS DATOS");
+                er.msj1.setText(e.getMessage());
+                er.setVisible(true);
+            } catch (NumberFormatException e) {
+                ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                er.titulo.setText("Error al ingresar los datos...");
+                er.msj.setText("Por favor, verificar:");
+                er.msj1.setText("Valores numéricos válidos en los campos correspondientes.");
+                er.setVisible(true);
+            }
+
+        }
+
 
     }//GEN-LAST:event_MBRegistrarActionPerformed
 
@@ -269,6 +374,16 @@ public class ModalCuenta extends javax.swing.JFrame {
 
     }//GEN-LAST:event_MBLimpiarActionPerformed
 
+    
+    private void limpiarCampos() {
+        txtCuentaOficial.setText("");
+        txtEstado.setText("");
+        txtSaldoEfectivo.setText("");
+        txtSaldoCheque24.setText("");
+        txtSaldoCheque48.setText("");
+        txtSaldoCheque.setText("");
+        txtSaldoLibreta.setText("");
+    }
     /**
      * @param args the command line arguments
      */
@@ -299,14 +414,14 @@ public class ModalCuenta extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ModalCuenta().setVisible(true);
+                new ModalCuenta(1).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static rojeru_san.rsdate.RSDateChooser DCFechaIngreso1;
-    public static rojeru_san.rsdate.RSDateChooser DCFechaIngreso2;
+    public static rojeru_san.rsdate.RSDateChooser DCFechaApertura;
+    public static rojeru_san.rsdate.RSDateChooser DCFechaUltimoMovimiento;
     private necesario.MaterialButton MBLimpiar;
     public static necesario.MaterialButton MBRegistrar;
     private principal.MaterialButton cerrar;
@@ -324,12 +439,12 @@ public class ModalCuenta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     public static javax.swing.JLabel titulo;
-    public static app.bolivia.swing.JCTextField txtNombre1;
-    public static app.bolivia.swing.JCTextField txtNombre2;
-    public static app.bolivia.swing.JCTextField txtNombre3;
-    public static app.bolivia.swing.JCTextField txtNombre4;
-    public static app.bolivia.swing.JCTextField txtNombre5;
-    public static app.bolivia.swing.JCTextField txtNombre6;
-    public static app.bolivia.swing.JCTextField txtNombre7;
+    public static app.bolivia.swing.JCTextField txtCuentaOficial;
+    public static app.bolivia.swing.JCTextField txtEstado;
+    public static app.bolivia.swing.JCTextField txtSaldoCheque;
+    public static app.bolivia.swing.JCTextField txtSaldoCheque24;
+    public static app.bolivia.swing.JCTextField txtSaldoCheque48;
+    public static app.bolivia.swing.JCTextField txtSaldoEfectivo;
+    public static app.bolivia.swing.JCTextField txtSaldoLibreta;
     // End of variables declaration//GEN-END:variables
 }
